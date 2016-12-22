@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignitAPI.Client.Test", "SignitAPI.Client.Test\SignitAPI.Client.Test.csproj", "{C51AE0A0-8210-4EE7-BC10-A6948B825CC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignitAPI.Client.IntegrationSample", "SignitAPI.Client.IntegrationSample\SignitAPI.Client.IntegrationSample.csproj", "{FD85949F-459E-4A72-8C21-2A3C2D3A6646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignitAPI.Client", "SignitAPI.Client\SignitAPI.Client.csproj", "{0A5F0CF6-8007-44EA-AEE5-9161812AE423}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C51AE0A0-8210-4EE7-BC10-A6948B825CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C51AE0A0-8210-4EE7-BC10-A6948B825CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C51AE0A0-8210-4EE7-BC10-A6948B825CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C51AE0A0-8210-4EE7-BC10-A6948B825CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD85949F-459E-4A72-8C21-2A3C2D3A6646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD85949F-459E-4A72-8C21-2A3C2D3A6646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD85949F-459E-4A72-8C21-2A3C2D3A6646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD85949F-459E-4A72-8C21-2A3C2D3A6646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A5F0CF6-8007-44EA-AEE5-9161812AE423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A5F0CF6-8007-44EA-AEE5-9161812AE423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A5F0CF6-8007-44EA-AEE5-9161812AE423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A5F0CF6-8007-44EA-AEE5-9161812AE423}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

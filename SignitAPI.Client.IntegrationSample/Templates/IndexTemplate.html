@@ -1,0 +1,22 @@
+﻿<h3>Begin signing: </h3>
+
+<div ng-show="error">{{error}}</div>
+<form ng-submit="postOrder()">
+    <div class="padding">
+        <label for="message">Message</label><br/>
+        <input type="text" ng-model="message" id="message" name="message" placeholder="Message" />
+    </div>
+    
+
+    <div class="padding">
+        <div ngf-drop ngf-select ng-model="file" class="drop-box ms-fontWeight-semibold"
+             ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+             accept="image/*,application/pdf,text/plain"
+             ngf-pattern="'image/*,application/pdf,text/plain'">Drop pdf or image or text file here</div>
+    </div>
+    <ul>
+        <li ng-repeat="f in file"><span >File used:</span>{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+    </ul>
+    <input type="submit" value="Sign this document"/>
+</form>
+

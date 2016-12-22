@@ -1,0 +1,31 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $.ajax({
+		type: "POST",
+		url: 'https://signit.dev.nosunset.com/token',
+		data: {grant_type:"password", username:"Vestjylland_forsikring", password:"Vestjylland_forsikring"},
+		success: success,
+		error: error
+	});
+});
+
+function success(data)
+{
+	alert(data);
+}
+
+function error(data, message)
+{
+	alert('error '+message);
+}
+
+</script>
+</head>
+<body>
+	
+</body>
+<html>

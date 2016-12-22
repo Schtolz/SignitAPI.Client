@@ -1,0 +1,16 @@
+﻿<h2>{{message}}</h2>
+<p>Current order: {{order.OrderId}}</p>
+<p>Current order signer reference: {{localSignerReference}}</p>
+{{error}}
+<div ng-show="order.OrderStatus==0">
+    <p>Dev! Just signed and still see "sign" button? Refresh. It is processing on signit. Either run a check for it, or hook up to event using NotificationChannel within OrderModel entity.</p>
+    <input type="button" value="Sign" ng-click="gotoSign(order.OrderId)"/>
+</div>
+
+<div ng-show="order.OrderStatus==4">
+    <h2>
+        order id: Order has been signed. You can download signed document here:
+        <a href="/api/v1/order/pades?orderId={{order.OrderId}}&localDocumentReference={{order.Documents[0].LocalDocumentReference}}">Download</a>
+    </h2>
+
+</div>

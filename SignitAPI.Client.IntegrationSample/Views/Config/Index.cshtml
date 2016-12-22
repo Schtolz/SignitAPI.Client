@@ -1,0 +1,15 @@
+﻿@using System.Configuration
+@model dynamic
+
+@{
+    Layout = null;
+}
+
+integrationApp.constant('APP_DATA',
+{
+    'LOCAL_SIGNER_REFERENCE': 'sko@nosunset.com',
+    'LOCAL_SIGNER_EMAIL': 'sko@nosunset.com',
+    'LOCAL_SIGNER_NAME': 'sko@nosunset.com',
+    'APP_BASE_URL': '@ConfigurationManager.AppSettings["AppBaseUrl"]',
+    'SIGNIT_BASE_URL': '@ConfigurationManager.AppSettings["SignitApiBaseUri"]'
+});

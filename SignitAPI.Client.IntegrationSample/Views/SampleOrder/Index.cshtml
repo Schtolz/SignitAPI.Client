@@ -1,0 +1,24 @@
+﻿@using System.Web.UI.WebControls
+@model SignitIntegrationSample.RemoteOrderService.TrustSignMessage
+
+@{
+    ViewBag.Title = "title";
+    Layout = null;
+}
+
+<h2>Sample sign application</h2>
+
+@if (TempData.ContainsKey("Error"))
+{
+    <h2>Error: 
+        @TempData["Error"]
+    </h2>
+}
+
+<h3>Begin signing: </h3>
+@using (Html.BeginForm("CreateOrder", "SampleOrder", FormMethod.Post, new {enctype="multipart/form-data"}))
+{
+    <input type="file" name="file" />
+    <input type="submit" value="Sign this document" />
+}
+

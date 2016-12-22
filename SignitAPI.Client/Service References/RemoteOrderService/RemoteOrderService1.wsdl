@@ -1,0 +1,2800 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RemoteOrderService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" />
+      <xs:element name="InsertSigningOrder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="request" nillable="true" type="q1:SigningOrder" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="InsertSigningOrderResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="InsertSigningOrderResult" nillable="true" type="q2:SigningOrder" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="InsertOrder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="request" nillable="true" type="q3:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="InsertOrderResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="InsertOrderResult" nillable="true" type="q4:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSigningProcesses">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="request" nillable="true" type="q5:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSigningProcessesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="GetSigningProcessesResult" nillable="true" type="q6:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CancelOrder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="request" nillable="true" type="q7:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CancelOrderResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="CancelOrderResult" nillable="true" type="q8:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrderDetails">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="request" nillable="true" type="q9:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrderDetailsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="GetOrderDetailsResult" nillable="true" type="q10:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPades">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="request" nillable="true" type="q11:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPadesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="GetPadesResult" nillable="true" type="q12:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PreInitOrderBeforeSigning">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="request" nillable="true" type="q13:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PreInitOrderBeforeSigningResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="PreInitOrderBeforeSigningResult" nillable="true" type="q14:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ConvertDocumentToValidPdf">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="request" nillable="true" type="q15:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ConvertDocumentToValidPdfResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="ConvertDocumentToValidPdfResult" nillable="true" type="q16:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrders">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="request" nillable="true" type="q17:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrdersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="GetOrdersResult" nillable="true" type="q18:TrustSignMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="NewOrdersModel">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="NewOrdersModelResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" minOccurs="0" name="NewOrdersModelResult" nillable="true" type="q19:GetMyOrdersResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSigningOrderDetailsResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSigningOrderDetailsResponseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="GetSigningOrderDetailsResponseResult" nillable="true" type="q20:GetSigningOrderDetailsResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PutSigningOrderResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PutSigningOrderResponseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="PutSigningOrderResponseResult" nillable="true" type="q21:PutSigningOrderResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SigningModel">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SigningModelResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="SigningModelResult" nillable="true" type="q22:RequestSigningProcessResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PreInitOrderResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PreInitOrderResponseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="PreInitOrderResponseResult" nillable="true" type="q23:PreInitOrderResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetMyCompanyAccountsResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetMyCompanyAccountsResponseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="GetMyCompanyAccountsResponseResult" nillable="true" type="q24:GetMyCompanyAccountsResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDocumentResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDocumentResponseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="GetDocumentResponseResult" nillable="true" type="q25:GetDocumentResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendSigningEmailResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendSigningEmailResponseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="SendSigningEmailResponseResult" nillable="true" type="q26:SendSigningEmailResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendSigningEmailRequest">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendSigningEmailRequestResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="SendSigningEmailRequestResult" nillable="true" type="q27:SendSigningEmailRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/" />
+      <xs:complexType name="SigningOrder">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q1:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="CreatorId" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="DatePayed" nillable="true" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="Deadline" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="Documents" nillable="true" type="tns:ArrayOfDocument" />
+              <xs:element minOccurs="0" name="IsPrivate" type="xs:boolean" />
+              <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="Notifications" nillable="true" type="tns:ArrayOfMerchantSigningNotification" />
+              <xs:element minOccurs="0" name="OrderDescription" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="OrderStatus" type="tns:OrderStatus" />
+              <xs:element minOccurs="0" name="OwnerId" type="xs:int" />
+              <xs:element minOccurs="0" name="SendSignedDataAsAttachmentInEmail" type="xs:boolean" />
+              <xs:element minOccurs="0" name="SignersInfoes" nillable="true" type="tns:ArrayOfSignerData" />
+              <xs:element minOccurs="0" name="SigningExecutionDetails" nillable="true" type="tns:ArrayOfSigningExecutionDetails" />
+              <xs:element minOccurs="0" name="SigningMetadata" nillable="true" type="tns:ArrayOfSigningMetadataItem" />
+              <xs:element minOccurs="0" name="UniqueId" type="ser:guid" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SigningOrder" nillable="true" type="tns:SigningOrder" />
+      <xs:complexType name="ArrayOfDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Document" nillable="true" type="tns:Document" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDocument" nillable="true" type="tns:ArrayOfDocument" />
+      <xs:complexType name="Document">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q2:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="Base64Contents" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="DocumentType" type="tns:DocumentType" />
+              <xs:element minOccurs="0" name="DownloadId" type="xs:int" />
+              <xs:element minOccurs="0" name="IsSigned" type="xs:boolean" />
+              <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="SigningOrder" nillable="true" type="tns:SigningOrder" />
+              <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
+              <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="Document" nillable="true" type="tns:Document" />
+      <xs:simpleType name="DocumentType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Pdf" />
+          <xs:enumeration value="Html" />
+          <xs:enumeration value="Xml" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="DocumentType" nillable="true" type="tns:DocumentType" />
+      <xs:complexType name="ArrayOfMerchantSigningNotification">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="MerchantSigningNotification" nillable="true" type="tns:MerchantSigningNotification" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfMerchantSigningNotification" nillable="true" type="tns:ArrayOfMerchantSigningNotification" />
+      <xs:complexType name="MerchantSigningNotification">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SigningNotification">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="SigningOrder" nillable="true" type="tns:SigningOrder" />
+              <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
+              <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Trigger" type="q3:merchantNotificationTriggersTypeDefTrigger" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="MerchantSigningNotification" nillable="true" type="tns:MerchantSigningNotification" />
+      <xs:complexType name="SigningNotification">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q4:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="NotificationType" nillable="true" type="tns:ArrayOfNotificationType" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SigningNotification" nillable="true" type="tns:SigningNotification" />
+      <xs:complexType name="ArrayOfNotificationType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="NotificationType" nillable="true" type="tns:NotificationType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfNotificationType" nillable="true" type="tns:ArrayOfNotificationType" />
+      <xs:complexType name="NotificationType">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q5:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="SigningNotification" nillable="true" type="tns:SigningNotification" />
+              <xs:element minOccurs="0" name="SigningNotificationId" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="NotificationType" nillable="true" type="tns:NotificationType" />
+      <xs:complexType name="XmlAddressNotificationType">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:NotificationType">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="XmlAddress" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="XmlAddressNotificationType" nillable="true" type="tns:XmlAddressNotificationType" />
+      <xs:complexType name="SmsNotificationType">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:NotificationType">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="SmsAddress" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SmsNotificationType" nillable="true" type="tns:SmsNotificationType" />
+      <xs:simpleType name="OrderStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Active" />
+          <xs:enumeration value="CancelledByMerchant" />
+          <xs:enumeration value="Expired" />
+          <xs:enumeration value="RejectedBySigner" />
+          <xs:enumeration value="Complete" />
+          <xs:enumeration value="ExpiredByProxy" />
+          <xs:enumeration value="Failed" />
+          <xs:enumeration value="Processing" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="OrderStatus" nillable="true" type="tns:OrderStatus" />
+      <xs:complexType name="ArrayOfSignerData">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SignerData" nillable="true" type="tns:SignerData" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSignerData" nillable="true" type="tns:ArrayOfSignerData" />
+      <xs:complexType name="SignerData">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q6:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="AcceptedPkis" nillable="true" type="tns:SignerAcceptedPki" />
+              <xs:element minOccurs="0" name="DateSigned" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="IsDomainOwned" type="xs:boolean" />
+              <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="MemberId" type="xs:int" />
+              <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="Notifications" nillable="true" type="tns:ArrayOfCustomerSigningNotification" />
+              <xs:element minOccurs="0" name="SendSignedDataAsAttachmentInEmail" type="xs:boolean" />
+              <xs:element minOccurs="0" name="SendSignitEmails" type="xs:boolean" />
+              <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="SignerStatus" type="q7:signerFilterTypeDefSignerStatus" />
+              <xs:element minOccurs="0" name="SignerType" type="tns:SignerType" />
+              <xs:element minOccurs="0" name="SigningOrder" nillable="true" type="tns:SigningOrder" />
+              <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SignerData" nillable="true" type="tns:SignerData" />
+      <xs:complexType name="SignerAcceptedPki">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SignerAcceptedPkisTypeDefNemId" nillable="true" type="tns:SignerAcceptedPkisTypeDefNemId" />
+          <xs:element minOccurs="0" name="SignerData" nillable="true" type="tns:SignerData" />
+          <xs:element minOccurs="0" name="SignerDataId" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SignerAcceptedPki" nillable="true" type="tns:SignerAcceptedPki" />
+      <xs:complexType name="SignerAcceptedPkisTypeDefNemId">
+        <xs:sequence>
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="CertificatePolicy" type="q8:nemidPKITypeDefCertificatePolicy" />
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="IdType" type="q9:nemidPKITypeDefSignerIDIDType" />
+          <xs:element minOccurs="0" name="IdValue" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SignerAcceptedPki" nillable="true" type="tns:SignerAcceptedPki" />
+          <xs:element minOccurs="0" name="SignerAcceptedPkiId" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SignerAcceptedPkisTypeDefNemId" nillable="true" type="tns:SignerAcceptedPkisTypeDefNemId" />
+      <xs:complexType name="ArrayOfCustomerSigningNotification">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerSigningNotification" nillable="true" type="tns:CustomerSigningNotification" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfCustomerSigningNotification" nillable="true" type="tns:ArrayOfCustomerSigningNotification" />
+      <xs:complexType name="CustomerSigningNotification">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SigningNotification">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="SignerData" nillable="true" type="tns:SignerData" />
+              <xs:element minOccurs="0" name="SignerDataId" type="xs:int" />
+              <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Trigger" type="q10:signerNotificationTriggersTypeDefTrigger" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="CustomerSigningNotification" nillable="true" type="tns:CustomerSigningNotification" />
+      <xs:simpleType name="SignerType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Signer" />
+          <xs:enumeration value="Viewer" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="SignerType" nillable="true" type="tns:SignerType" />
+      <xs:complexType name="ArrayOfSigningExecutionDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningExecutionDetails" nillable="true" type="tns:SigningExecutionDetails" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningExecutionDetails" nillable="true" type="tns:ArrayOfSigningExecutionDetails" />
+      <xs:complexType name="SigningExecutionDetails">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q11:BaseEntity">
+            <xs:sequence>
+              <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="DisplayProcessInfo" type="q12:InsertOrderExecutionDetailsDisplayProcessInfo" />
+              <xs:element minOccurs="0" name="OrderDeadline" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="SigningOrder" nillable="true" type="tns:SigningOrder" />
+              <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
+              <xs:element minOccurs="0" name="SigningSteps" nillable="true" type="tns:ArrayOfSigningStep" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SigningExecutionDetails" nillable="true" type="tns:SigningExecutionDetails" />
+      <xs:complexType name="ArrayOfSigningStep">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningStep" nillable="true" type="tns:SigningStep" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningStep" nillable="true" type="tns:ArrayOfSigningStep" />
+      <xs:complexType name="SigningStep">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q13:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="SigningExecutionDetails" nillable="true" type="tns:SigningExecutionDetails" />
+              <xs:element minOccurs="0" name="SigningExecutionDetailsId" type="xs:int" />
+              <xs:element minOccurs="0" name="SigningProcesses" nillable="true" type="tns:ArrayOfSigningProcess" />
+              <xs:element minOccurs="0" name="StepDeadline" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="StepNumber" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SigningStep" nillable="true" type="tns:SigningStep" />
+      <xs:complexType name="ArrayOfSigningProcess">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningProcess" nillable="true" type="tns:SigningProcess" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningProcess" nillable="true" type="tns:ArrayOfSigningProcess" />
+      <xs:complexType name="SigningProcess">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q14:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="SigningStep" nillable="true" type="tns:SigningStep" />
+              <xs:element minOccurs="0" name="SigningStepId" type="xs:int" />
+              <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q15:signingProcessStatusTypeDef" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SigningProcess" nillable="true" type="tns:SigningProcess" />
+      <xs:complexType name="ArrayOfSigningMetadataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningMetadataItem" nillable="true" type="tns:SigningMetadataItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningMetadataItem" nillable="true" type="tns:ArrayOfSigningMetadataItem" />
+      <xs:complexType name="SigningMetadataItem">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q16:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="SigningOrder" nillable="true" type="tns:SigningOrder" />
+              <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
+              <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SigningMetadataItem" nillable="true" type="tns:SigningMetadataItem" />
+      <xs:simpleType name="SigningGroupToMemberStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Inactive" />
+          <xs:enumeration value="Active" />
+          <xs:enumeration value="Pending" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="SigningGroupToMemberStatus" nillable="true" type="tns:SigningGroupToMemberStatus" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="BaseEntity" nillable="true" type="tns:BaseEntity" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:simpleType name="merchantNotificationTriggersTypeDefTrigger">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="OnOrderCancellation" />
+          <xs:enumeration value="OnOrderCompletion" />
+          <xs:enumeration value="OnOrderRejection" />
+          <xs:enumeration value="OnOrderExpiration" />
+          <xs:enumeration value="OnStepReady" />
+          <xs:enumeration value="OnStepExpiration" />
+          <xs:enumeration value="OnStepCompletion" />
+          <xs:enumeration value="OnSignProcessRejection" />
+          <xs:enumeration value="OnSignProcessExpiration" />
+          <xs:enumeration value="OnSignProcessCompletion" />
+          <xs:enumeration value="OnOrderFailed" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="merchantNotificationTriggersTypeDefTrigger" nillable="true" type="tns:merchantNotificationTriggersTypeDefTrigger" />
+      <xs:simpleType name="nemidPKITypeDefCertificatePolicy">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Personal" />
+          <xs:enumeration value="Employee" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="nemidPKITypeDefCertificatePolicy" nillable="true" type="tns:nemidPKITypeDefCertificatePolicy" />
+      <xs:simpleType name="nemidPKITypeDefSignerIDIDType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SSN" />
+          <xs:enumeration value="PID" />
+          <xs:enumeration value="RID" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="nemidPKITypeDefSignerIDIDType" nillable="true" type="tns:nemidPKITypeDefSignerIDIDType" />
+      <xs:simpleType name="signerNotificationTriggersTypeDefTrigger">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="OnOrderCancellation" />
+          <xs:enumeration value="OnOrderCompletion" />
+          <xs:enumeration value="OnOrderRejection" />
+          <xs:enumeration value="OnOrderExpiration" />
+          <xs:enumeration value="OnReminderEvent" />
+          <xs:enumeration value="OnSignProcessReady" />
+          <xs:enumeration value="OnSignProcessExpiration" />
+          <xs:enumeration value="OnOrderFailed" />
+          <xs:enumeration value="OnSignProcessCompletion" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="signerNotificationTriggersTypeDefTrigger" nillable="true" type="tns:signerNotificationTriggersTypeDefTrigger" />
+      <xs:simpleType name="signerFilterTypeDefSignerStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Active" />
+          <xs:enumeration value="Complete" />
+          <xs:enumeration value="Pending" />
+          <xs:enumeration value="Expired" />
+          <xs:enumeration value="RejectedBySigner" />
+          <xs:enumeration value="CancelledByMerchant" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="signerFilterTypeDefSignerStatus" nillable="true" type="tns:signerFilterTypeDefSignerStatus" />
+      <xs:simpleType name="InsertOrderExecutionDetailsDisplayProcessInfo">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Name" />
+          <xs:enumeration value="NameStatus" />
+          <xs:enumeration value="NameStatusTime" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="InsertOrderExecutionDetailsDisplayProcessInfo" nillable="true" type="tns:InsertOrderExecutionDetailsDisplayProcessInfo" />
+      <xs:simpleType name="signingProcessStatusTypeDef">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Active" />
+          <xs:enumeration value="Pending" />
+          <xs:enumeration value="Complete" />
+          <xs:enumeration value="CancelledByMerchant" />
+          <xs:enumeration value="Expired" />
+          <xs:enumeration value="RejectedBySigner" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="signingProcessStatusTypeDef" nillable="true" type="tns:signingProcessStatusTypeDef" />
+      <xs:complexType name="TrustSignMessage">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:StdHeaderType">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="Item" nillable="true" type="xs:anyType" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="TrustSignMessage" nillable="true" type="tns:TrustSignMessage" />
+      <xs:complexType name="StdHeaderType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MerchantID" type="xs:long" />
+          <xs:element minOccurs="0" name="MessageID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Time" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="StdHeaderType" nillable="true" type="tns:StdHeaderType" />
+      <xs:complexType name="GetSigningProcesses">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SigningProcessStatusFilter" type="tns:signingProcessStatusTypeDef" />
+          <xs:element minOccurs="0" name="SigningProcessStatusFilterSpecified" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetSigningProcesses" nillable="true" type="tns:GetSigningProcesses" />
+      <xs:complexType name="GetSigningProcessesResponse">
+        <xs:sequence>
+          <xs:element name="orderDescriptionField" nillable="true" type="xs:string" />
+          <xs:element name="orderIDField" nillable="true" type="xs:string" />
+          <xs:element name="orderStatusField" type="tns:GetOrderStatusResponseOrderStatus" />
+          <xs:element name="searchHitsField" nillable="true" type="xs:string" />
+          <xs:element name="signingProcessResultsField" nillable="true" type="tns:GetSigningProcessesResponseSigningProcessResults" />
+          <xs:element name="transRefField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetSigningProcessesResponse" nillable="true" type="tns:GetSigningProcessesResponse" />
+      <xs:simpleType name="GetOrderStatusResponseOrderStatus">
+        <xs:list>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Active">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="CancelledByMerchant">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="Expired">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="RejectedBySigner">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="Complete">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="ExpiredByProxy">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="Failed">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:list>
+      </xs:simpleType>
+      <xs:element name="GetOrderStatusResponseOrderStatus" nillable="true" type="tns:GetOrderStatusResponseOrderStatus" />
+      <xs:complexType name="GetSigningProcessesResponseSigningProcessResults">
+        <xs:sequence>
+          <xs:element name="signingProcessResultField" nillable="true" type="tns:ArrayOfsigningProcessResultTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetSigningProcessesResponseSigningProcessResults" nillable="true" type="tns:GetSigningProcessesResponseSigningProcessResults" />
+      <xs:complexType name="ArrayOfsigningProcessResultTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="signingProcessResultTypeDef" nillable="true" type="tns:signingProcessResultTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfsigningProcessResultTypeDef" nillable="true" type="tns:ArrayOfsigningProcessResultTypeDef" />
+      <xs:complexType name="signingProcessResultTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocumentDetails" nillable="true" type="tns:signingProcessResultTypeDefDocumentDetails" />
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LocalWebContextRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SignURL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SignerSSN" nillable="true" type="xs:anyType" />
+          <xs:element minOccurs="0" name="SigningProcessId" type="xs:long" />
+          <xs:element minOccurs="0" name="SigningTime" nillable="true" type="xs:anyType" />
+          <xs:element minOccurs="0" name="Status" type="tns:signingProcessStatusTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signingProcessResultTypeDef" nillable="true" type="tns:signingProcessResultTypeDef" />
+      <xs:complexType name="signingProcessResultTypeDefDocumentDetails">
+        <xs:sequence>
+          <xs:element name="docTypeField" type="tns:signingProcessResultTypeDefDocumentDetailsDocType" />
+          <xs:element name="documentStatusField" type="tns:documentStatusTypeDef" />
+          <xs:element name="localDocumentReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="presentationField" nillable="true" type="tns:signingProcessResultTypeDefDocumentDetailsPresentation" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signingProcessResultTypeDefDocumentDetails" nillable="true" type="tns:signingProcessResultTypeDefDocumentDetails" />
+      <xs:simpleType name="signingProcessResultTypeDefDocumentDetailsDocType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PDF" />
+          <xs:enumeration value="TEXT" />
+          <xs:enumeration value="XML" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="signingProcessResultTypeDefDocumentDetailsDocType" nillable="true" type="tns:signingProcessResultTypeDefDocumentDetailsDocType" />
+      <xs:simpleType name="documentStatusTypeDef">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Active" />
+          <xs:enumeration value="Complete" />
+          <xs:enumeration value="Pending" />
+          <xs:enumeration value="Expired" />
+          <xs:enumeration value="RejectedBySigner" />
+          <xs:enumeration value="CancelledByMerchant" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="documentStatusTypeDef" nillable="true" type="tns:documentStatusTypeDef" />
+      <xs:complexType name="signingProcessResultTypeDefDocumentDetailsPresentation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signingProcessResultTypeDefDocumentDetailsPresentation" nillable="true" type="tns:signingProcessResultTypeDefDocumentDetailsPresentation" />
+      <xs:complexType name="InsertOrder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="B2BPostProcessing" nillable="true" type="tns:InsertOrderB2BPostProcessing" />
+          <xs:element minOccurs="0" name="Documents" nillable="true" type="tns:InsertOrderDocuments" />
+          <xs:element minOccurs="0" name="ExecutionDetails" nillable="true" type="tns:InsertOrderExecutionDetails" />
+          <xs:element minOccurs="0" name="Merchant" nillable="true" type="tns:InsertOrderMerchant" />
+          <xs:element minOccurs="0" name="MetaData" nillable="true" type="tns:metaDataTypeDef" />
+          <xs:element minOccurs="0" name="OrderDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Organizations" nillable="true" type="tns:InsertOrderOrganizations" />
+          <xs:element minOccurs="0" name="PostProcessing" nillable="true" type="tns:PostProcessing" />
+          <xs:element minOccurs="0" name="Signers" nillable="true" type="tns:InsertOrderSigners" />
+          <xs:element minOccurs="0" name="WebContexts" nillable="true" type="tns:InsertOrderWebContexts" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrder" nillable="true" type="tns:InsertOrder" />
+      <xs:complexType name="InsertOrderB2BPostProcessing">
+        <xs:sequence>
+          <xs:element name="signAndProcuraVerificationsField" nillable="true" type="tns:InsertOrderB2BPostProcessingSignAndProcuraVerifications" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderB2BPostProcessing" nillable="true" type="tns:InsertOrderB2BPostProcessing" />
+      <xs:complexType name="InsertOrderB2BPostProcessingSignAndProcuraVerifications">
+        <xs:sequence>
+          <xs:element name="signAndProcuraVerificationField" nillable="true" type="tns:ArrayOfSignAndProcuraVerificationTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderB2BPostProcessingSignAndProcuraVerifications" nillable="true" type="tns:InsertOrderB2BPostProcessingSignAndProcuraVerifications" />
+      <xs:complexType name="ArrayOfSignAndProcuraVerificationTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SignAndProcuraVerificationTypeDef" nillable="true" type="tns:SignAndProcuraVerificationTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSignAndProcuraVerificationTypeDef" nillable="true" type="tns:ArrayOfSignAndProcuraVerificationTypeDef" />
+      <xs:complexType name="SignAndProcuraVerificationTypeDef">
+        <xs:sequence>
+          <xs:element name="localDocumentReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="localOrganizationRefField" nillable="true" type="xs:string" />
+          <xs:element name="signOrProcuraField" type="tns:SignAndProcuraVerificationTypeDefSignOrProcura" />
+          <xs:element name="signersField" nillable="true" type="tns:SignAndProcuraVerificationTypeDefSigners" />
+          <xs:element name="terminateOnSPCheckFailsField" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SignAndProcuraVerificationTypeDef" nillable="true" type="tns:SignAndProcuraVerificationTypeDef" />
+      <xs:simpleType name="SignAndProcuraVerificationTypeDefSignOrProcura">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="signature" />
+          <xs:enumeration value="procuration" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="SignAndProcuraVerificationTypeDefSignOrProcura" nillable="true" type="tns:SignAndProcuraVerificationTypeDefSignOrProcura" />
+      <xs:complexType name="SignAndProcuraVerificationTypeDefSigners">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="localSignerReferenceField" nillable="true" type="q1:ArrayOfstring" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SignAndProcuraVerificationTypeDefSigners" nillable="true" type="tns:SignAndProcuraVerificationTypeDefSigners" />
+      <xs:complexType name="InsertOrderDocuments">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Document" nillable="true" type="tns:ArrayOfdocumentTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderDocuments" nillable="true" type="tns:InsertOrderDocuments" />
+      <xs:complexType name="ArrayOfdocumentTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="documentTypeDef" nillable="true" type="tns:documentTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfdocumentTypeDef" nillable="true" type="tns:ArrayOfdocumentTypeDef" />
+      <xs:complexType name="documentTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocType" nillable="true" type="tns:documentTypeDefDocType" />
+          <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Presentation" nillable="true" type="tns:documentTypeDefPresentation" />
+          <xs:element minOccurs="0" name="RequiresAuthentication" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RequiresAuthenticationSpecified" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="documentTypeDef" nillable="true" type="tns:documentTypeDef" />
+      <xs:complexType name="documentTypeDefDocType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Item" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="documentTypeDefDocType" nillable="true" type="tns:documentTypeDefDocType" />
+      <xs:complexType name="documentTypeDefDocTypePDF">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="B64DocumentBytes" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="documentTypeDefDocTypePDF" nillable="true" type="tns:documentTypeDefDocTypePDF" />
+      <xs:complexType name="documentTypeDefDocTypeTEXT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="B64DocumentBytes" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="documentTypeDefDocTypeTEXT" nillable="true" type="tns:documentTypeDefDocTypeTEXT" />
+      <xs:complexType name="documentTypeDefDocTypeXML">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="B64XMLBytes" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="B64XSLBytes" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="documentTypeDefDocTypeXML" nillable="true" type="tns:documentTypeDefDocTypeXML" />
+      <xs:complexType name="documentTypeDefPresentation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="documentTypeDefPresentation" nillable="true" type="tns:documentTypeDefPresentation" />
+      <xs:complexType name="InsertOrderExecutionDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DisplayProcessInfo" type="tns:InsertOrderExecutionDetailsDisplayProcessInfo" />
+          <xs:element minOccurs="0" name="DisplayProcessInfoSpecified" type="xs:boolean" />
+          <xs:element minOccurs="0" name="GenerateOneTimeURLs" type="xs:boolean" />
+          <xs:element minOccurs="0" name="GenerateOneTimeURLsSpecified" type="xs:boolean" />
+          <xs:element minOccurs="0" name="OrderDeadline" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Steps" nillable="true" type="tns:InsertOrderExecutionDetailsSteps" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderExecutionDetails" nillable="true" type="tns:InsertOrderExecutionDetails" />
+      <xs:complexType name="InsertOrderExecutionDetailsSteps">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Step" nillable="true" type="tns:ArrayOfstepTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderExecutionDetailsSteps" nillable="true" type="tns:InsertOrderExecutionDetailsSteps" />
+      <xs:complexType name="ArrayOfstepTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="stepTypeDef" nillable="true" type="tns:stepTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfstepTypeDef" nillable="true" type="tns:ArrayOfstepTypeDef" />
+      <xs:complexType name="stepTypeDef">
+        <xs:sequence>
+          <xs:element name="signingProcessField" nillable="true" type="tns:ArrayOfsigningProcessTypeDef" />
+          <xs:element name="stepDeadlineField" type="xs:dateTime" />
+          <xs:element name="stepDeadlineFieldSpecified" type="xs:boolean" />
+          <xs:element name="stepNumberField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="stepTypeDef" nillable="true" type="tns:stepTypeDef" />
+      <xs:complexType name="ArrayOfsigningProcessTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="signingProcessTypeDef" nillable="true" type="tns:signingProcessTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfsigningProcessTypeDef" nillable="true" type="tns:ArrayOfsigningProcessTypeDef" />
+      <xs:complexType name="signingProcessTypeDef">
+        <xs:sequence>
+          <xs:element name="localDocumentReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="localSignerReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="localWebContextRefField" nillable="true" type="xs:string" />
+          <xs:element name="reminderSettingsField" nillable="true" type="tns:signingProcessTypeDefReminderSettings" />
+          <xs:element name="signingProcessDeadlineField" type="xs:dateTime" />
+          <xs:element name="signingProcessDeadlineFieldSpecified" type="xs:boolean" />
+          <xs:element name="terminateOrderOnSignerRejectionField" type="xs:boolean" />
+          <xs:element name="terminateOrderOnSignerRejectionFieldSpecified" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signingProcessTypeDef" nillable="true" type="tns:signingProcessTypeDef" />
+      <xs:complexType name="signingProcessTypeDefReminderSettings">
+        <xs:sequence>
+          <xs:element name="intervalField" nillable="true" type="xs:string" />
+          <xs:element name="startTimeField" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signingProcessTypeDefReminderSettings" nillable="true" type="tns:signingProcessTypeDefReminderSettings" />
+      <xs:complexType name="InsertOrderMerchant">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Notification" nillable="true" type="tns:merchantNotificationChannelsTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderMerchant" nillable="true" type="tns:InsertOrderMerchant" />
+      <xs:complexType name="merchantNotificationChannelsTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NotificationChannels" nillable="true" type="tns:ArrayOfmerchantNotificationChannelsTypeDefNotificationChannel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="merchantNotificationChannelsTypeDef" nillable="true" type="tns:merchantNotificationChannelsTypeDef" />
+      <xs:complexType name="ArrayOfmerchantNotificationChannelsTypeDefNotificationChannel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="merchantNotificationChannelsTypeDefNotificationChannel" nillable="true" type="tns:merchantNotificationChannelsTypeDefNotificationChannel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfmerchantNotificationChannelsTypeDefNotificationChannel" nillable="true" type="tns:ArrayOfmerchantNotificationChannelsTypeDefNotificationChannel" />
+      <xs:complexType name="merchantNotificationChannelsTypeDefNotificationChannel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Channel" nillable="true" type="tns:merchantChannelsTypeDef" />
+          <xs:element minOccurs="0" name="Triggers" nillable="true" type="tns:merchantNotificationTriggersTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="merchantNotificationChannelsTypeDefNotificationChannel" nillable="true" type="tns:merchantNotificationChannelsTypeDefNotificationChannel" />
+      <xs:complexType name="merchantChannelsTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Item" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="merchantChannelsTypeDef" nillable="true" type="tns:merchantChannelsTypeDef" />
+      <xs:complexType name="merchantEmailAddressTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="merchantEmailAddressTypeDef" nillable="true" type="tns:merchantEmailAddressTypeDef" />
+      <xs:complexType name="faxAddressTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="faxAddressTypeDef" nillable="true" type="tns:faxAddressTypeDef" />
+      <xs:complexType name="merchantSmsAddressTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="merchantSmsAddressTypeDef" nillable="true" type="tns:merchantSmsAddressTypeDef" />
+      <xs:complexType name="xmlAddressTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="xmlAddressTypeDef" nillable="true" type="tns:xmlAddressTypeDef" />
+      <xs:complexType name="merchantNotificationTriggersTypeDef">
+        <xs:sequence>
+          <xs:element name="triggerField" nillable="true" type="tns:ArrayOfmerchantNotificationTriggersTypeDefTrigger" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="merchantNotificationTriggersTypeDef" nillable="true" type="tns:merchantNotificationTriggersTypeDef" />
+      <xs:complexType name="ArrayOfmerchantNotificationTriggersTypeDefTrigger">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="merchantNotificationTriggersTypeDefTrigger" type="tns:merchantNotificationTriggersTypeDefTrigger" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfmerchantNotificationTriggersTypeDefTrigger" nillable="true" type="tns:ArrayOfmerchantNotificationTriggersTypeDefTrigger" />
+      <xs:complexType name="metaDataTypeDef">
+        <xs:sequence>
+          <xs:element name="nameValuePairField" nillable="true" type="tns:ArrayOfmetaDataTypeDefNameValuePair" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="metaDataTypeDef" nillable="true" type="tns:metaDataTypeDef" />
+      <xs:complexType name="ArrayOfmetaDataTypeDefNameValuePair">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="metaDataTypeDefNameValuePair" nillable="true" type="tns:metaDataTypeDefNameValuePair" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfmetaDataTypeDefNameValuePair" nillable="true" type="tns:ArrayOfmetaDataTypeDefNameValuePair" />
+      <xs:complexType name="metaDataTypeDefNameValuePair">
+        <xs:sequence>
+          <xs:element name="nameField" nillable="true" type="xs:string" />
+          <xs:element name="valueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="metaDataTypeDefNameValuePair" nillable="true" type="tns:metaDataTypeDefNameValuePair" />
+      <xs:complexType name="InsertOrderOrganizations">
+        <xs:sequence>
+          <xs:element name="organizationField" nillable="true" type="tns:ArrayOfOrganizationTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderOrganizations" nillable="true" type="tns:InsertOrderOrganizations" />
+      <xs:complexType name="ArrayOfOrganizationTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OrganizationTypeDef" nillable="true" type="tns:OrganizationTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfOrganizationTypeDef" nillable="true" type="tns:ArrayOfOrganizationTypeDef" />
+      <xs:complexType name="OrganizationTypeDef">
+        <xs:sequence>
+          <xs:element name="attachBusinessCertificateToSDOField" type="xs:boolean" />
+          <xs:element name="countryField" nillable="true" type="xs:string" />
+          <xs:element name="localOrganizationRefField" nillable="true" type="xs:string" />
+          <xs:element name="organizationNumberField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrganizationTypeDef" nillable="true" type="tns:OrganizationTypeDef" />
+      <xs:complexType name="PostProcessing">
+        <xs:sequence>
+          <xs:element name="archiveDefinitionsField" nillable="true" type="tns:PostProcessingArchiveDefinitions" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PostProcessing" nillable="true" type="tns:PostProcessing" />
+      <xs:complexType name="PostProcessingArchiveDefinitions">
+        <xs:sequence>
+          <xs:element name="archiveField" nillable="true" type="tns:ArrayOfarchiveTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PostProcessingArchiveDefinitions" nillable="true" type="tns:PostProcessingArchiveDefinitions" />
+      <xs:complexType name="ArrayOfarchiveTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="archiveTypeDef" nillable="true" type="tns:archiveTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfarchiveTypeDef" nillable="true" type="tns:ArrayOfarchiveTypeDef" />
+      <xs:complexType name="archiveTypeDef">
+        <xs:sequence>
+          <xs:element name="archiveDataField" nillable="true" type="tns:archiveTypeDefArchiveData" />
+          <xs:element name="archiveNameField" nillable="true" type="xs:string" />
+          <xs:element name="metaDataListField" nillable="true" type="tns:archiveTypeDefMetaDataList" />
+          <xs:element name="objectRefField" nillable="true" type="tns:archiveTypeDefObjectRef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="archiveTypeDef" nillable="true" type="tns:archiveTypeDef" />
+      <xs:complexType name="archiveTypeDefArchiveData">
+        <xs:sequence>
+          <xs:element name="indexField" nillable="true" type="tns:ArrayOfarchiveTypeDefArchiveDataIndex" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="archiveTypeDefArchiveData" nillable="true" type="tns:archiveTypeDefArchiveData" />
+      <xs:complexType name="ArrayOfarchiveTypeDefArchiveDataIndex">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="archiveTypeDefArchiveDataIndex" nillable="true" type="tns:archiveTypeDefArchiveDataIndex" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfarchiveTypeDefArchiveDataIndex" nillable="true" type="tns:ArrayOfarchiveTypeDefArchiveDataIndex" />
+      <xs:complexType name="archiveTypeDefArchiveDataIndex">
+        <xs:sequence>
+          <xs:element name="keyField" nillable="true" type="xs:string" />
+          <xs:element name="valueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="archiveTypeDefArchiveDataIndex" nillable="true" type="tns:archiveTypeDefArchiveDataIndex" />
+      <xs:complexType name="archiveTypeDefMetaDataList">
+        <xs:sequence>
+          <xs:element name="metaDataField" nillable="true" type="tns:ArrayOfarchiveTypeDefMetaDataListMetaData" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="archiveTypeDefMetaDataList" nillable="true" type="tns:archiveTypeDefMetaDataList" />
+      <xs:complexType name="ArrayOfarchiveTypeDefMetaDataListMetaData">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="archiveTypeDefMetaDataListMetaData" nillable="true" type="tns:archiveTypeDefMetaDataListMetaData" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfarchiveTypeDefMetaDataListMetaData" nillable="true" type="tns:ArrayOfarchiveTypeDefMetaDataListMetaData" />
+      <xs:complexType name="archiveTypeDefMetaDataListMetaData">
+        <xs:sequence>
+          <xs:element name="keyField" nillable="true" type="xs:string" />
+          <xs:element name="valueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="archiveTypeDefMetaDataListMetaData" nillable="true" type="tns:archiveTypeDefMetaDataListMetaData" />
+      <xs:complexType name="archiveTypeDefObjectRef">
+        <xs:sequence>
+          <xs:element name="itemElementNameField" type="tns:ItemChoiceType" />
+          <xs:element name="itemField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="archiveTypeDefObjectRef" nillable="true" type="tns:archiveTypeDefObjectRef" />
+      <xs:simpleType name="ItemChoiceType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="LocalDocumentReference" />
+          <xs:enumeration value="LocalOrganizationRef" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="ItemChoiceType" nillable="true" type="tns:ItemChoiceType" />
+      <xs:complexType name="InsertOrderSigners">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Signer" nillable="true" type="tns:ArrayOfInsertOrderSignersSigner" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderSigners" nillable="true" type="tns:InsertOrderSigners" />
+      <xs:complexType name="ArrayOfInsertOrderSignersSigner">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="InsertOrderSignersSigner" nillable="true" type="tns:InsertOrderSignersSigner" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfInsertOrderSignersSigner" nillable="true" type="tns:ArrayOfInsertOrderSignersSigner" />
+      <xs:complexType name="InsertOrderSignersSigner">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Item" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderSignersSigner" nillable="true" type="tns:InsertOrderSignersSigner" />
+      <xs:complexType name="InsertOrderSignersSignerEndUserSigner">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AcceptedPKIs" nillable="true" type="tns:InsertOrderSignersSignerEndUserSignerAcceptedPKIs" />
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Notification" nillable="true" type="tns:signerNotificationChannelsTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderSignersSignerEndUserSigner" nillable="true" type="tns:InsertOrderSignersSignerEndUserSigner" />
+      <xs:complexType name="InsertOrderSignersSignerEndUserSignerAcceptedPKIs">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:acceptedPKIsTypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="InsertOrderSignersSignerEndUserSignerAcceptedPKIs" nillable="true" type="tns:InsertOrderSignersSignerEndUserSignerAcceptedPKIs" />
+      <xs:complexType name="acceptedPKIsTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BankID" nillable="true" type="tns:acceptedPKIsTypeDefBankID" />
+          <xs:element minOccurs="0" name="BankIDNOApp" nillable="true" type="tns:bankidPKITypeDef" />
+          <xs:element minOccurs="0" name="BankIDNOMobile" nillable="true" type="tns:bankidnomobileTypeDef" />
+          <xs:element minOccurs="0" name="BankIDSE" nillable="true" type="tns:acceptedPKIsTypeDefBankIDSE" />
+          <xs:element minOccurs="0" name="BankIDSEMobile" nillable="true" type="tns:acceptedPKIsTypeDefBankIDSEMobile" />
+          <xs:element minOccurs="0" name="Buypass" nillable="true" type="tns:acceptedPKIsTypeDefBuypass" />
+          <xs:element minOccurs="0" name="DigitalSignatur" nillable="true" type="tns:acceptedPKIsTypeDefDigitalSignatur" />
+          <xs:element minOccurs="0" name="NemID" nillable="true" type="tns:acceptedPKIsTypeDefNemID" />
+          <xs:element minOccurs="0" name="NemIDOpenSign" nillable="true" type="tns:acceptedPKIsTypeDefNemIDOpenSign" />
+          <xs:element minOccurs="0" name="TeliaID" nillable="true" type="tns:acceptedPKIsTypeDefTeliaID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="acceptedPKIsTypeDef" nillable="true" type="tns:acceptedPKIsTypeDef" />
+      <xs:complexType name="acceptedPKIsTypeDefBankID">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:bankidPKITypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="acceptedPKIsTypeDefBankID" nillable="true" type="tns:acceptedPKIsTypeDefBankID" />
+      <xs:complexType name="bankidPKITypeDef">
+        <xs:sequence>
+          <xs:element name="certificatePolicyField" type="tns:bankidPKITypeDefCertificatePolicy" />
+          <xs:element name="certificatePolicyFieldSpecified" type="xs:boolean" />
+          <xs:element name="signerIDField" nillable="true" type="tns:bankidPKITypeDefSignerID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="bankidPKITypeDef" nillable="true" type="tns:bankidPKITypeDef" />
+      <xs:simpleType name="bankidPKITypeDefCertificatePolicy">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Personal" />
+          <xs:enumeration value="PersonalQualified" />
+          <xs:enumeration value="Employee" />
+          <xs:enumeration value="EmployeeQualified" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="bankidPKITypeDefCertificatePolicy" nillable="true" type="tns:bankidPKITypeDefCertificatePolicy" />
+      <xs:complexType name="bankidPKITypeDefSignerID">
+        <xs:sequence>
+          <xs:element name="iDTypeField" type="tns:bankidPKITypeDefSignerIDIDType" />
+          <xs:element name="iDValueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="bankidPKITypeDefSignerID" nillable="true" type="tns:bankidPKITypeDefSignerID" />
+      <xs:simpleType name="bankidPKITypeDefSignerIDIDType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SSN" />
+          <xs:enumeration value="PID" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="bankidPKITypeDefSignerIDIDType" nillable="true" type="tns:bankidPKITypeDefSignerIDIDType" />
+      <xs:complexType name="bankidnomobileTypeDef">
+        <xs:sequence>
+          <xs:element name="certificatePolicyField" type="tns:bankidnomobileTypeDefCertificatePolicy" />
+          <xs:element name="certificatePolicyFieldSpecified" type="xs:boolean" />
+          <xs:element name="signerIDField" nillable="true" type="tns:bankidnomobileTypeDefSignerID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="bankidnomobileTypeDef" nillable="true" type="tns:bankidnomobileTypeDef" />
+      <xs:simpleType name="bankidnomobileTypeDefCertificatePolicy">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Personal" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="bankidnomobileTypeDefCertificatePolicy" nillable="true" type="tns:bankidnomobileTypeDefCertificatePolicy" />
+      <xs:complexType name="bankidnomobileTypeDefSignerID">
+        <xs:sequence>
+          <xs:element name="iDTypeField" type="tns:bankidnomobileTypeDefSignerIDIDType" />
+          <xs:element name="iDValueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="bankidnomobileTypeDefSignerID" nillable="true" type="tns:bankidnomobileTypeDefSignerID" />
+      <xs:simpleType name="bankidnomobileTypeDefSignerIDIDType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SSN" />
+          <xs:enumeration value="PID" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="bankidnomobileTypeDefSignerIDIDType" nillable="true" type="tns:bankidnomobileTypeDefSignerIDIDType" />
+      <xs:complexType name="acceptedPKIsTypeDefBankIDSE">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:bankidSePKITypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="acceptedPKIsTypeDefBankIDSE" nillable="true" type="tns:acceptedPKIsTypeDefBankIDSE" />
+      <xs:complexType name="bankidSePKITypeDef">
+        <xs:sequence>
+          <xs:element name="certificatePolicyField" nillable="true" type="tns:ArrayOfbankidSePKITypeDefCertificatePolicy" />
+          <xs:element name="signerIDField" nillable="true" type="tns:bankidSePKITypeDefSignerID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="bankidSePKITypeDef" nillable="true" type="tns:bankidSePKITypeDef" />
+      <xs:complexType name="ArrayOfbankidSePKITypeDefCertificatePolicy">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="bankidSePKITypeDefCertificatePolicy" type="tns:bankidSePKITypeDefCertificatePolicy" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfbankidSePKITypeDefCertificatePolicy" nillable="true" type="tns:ArrayOfbankidSePKITypeDefCertificatePolicy" />
+      <xs:simpleType name="bankidSePKITypeDefCertificatePolicy">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PersonalSoft" />
+          <xs:enumeration value="PersonalSmartcard" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="bankidSePKITypeDefCertificatePolicy" nillable="true" type="tns:bankidSePKITypeDefCertificatePolicy" />
+      <xs:complexType name="bankidSePKITypeDefSignerID">
+        <xs:sequence>
+          <xs:element name="iDTypeField" type="tns:bankidSePKITypeDefSignerIDIDType" />
+          <xs:element name="iDValueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="bankidSePKITypeDefSignerID" nillable="true" type="tns:bankidSePKITypeDefSignerID" />
+      <xs:simpleType name="bankidSePKITypeDefSignerIDIDType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SSN" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="bankidSePKITypeDefSignerIDIDType" nillable="true" type="tns:bankidSePKITypeDefSignerIDIDType" />
+      <xs:complexType name="acceptedPKIsTypeDefBankIDSEMobile">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:bankidSeMobilePKITypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="acceptedPKIsTypeDefBankIDSEMobile" nillable="true" type="tns:acceptedPKIsTypeDefBankIDSEMobile" />
+      <xs:complexType name="bankidSeMobilePKITypeDef">
+        <xs:sequence>
+          <xs:element name="certificatePolicyField" nillable="true" type="tns:ArrayOfbankidSeMobilePKITypeDefCertificatePolicy" />
+          <xs:element name="signerIDField" nillable="true" type="tns:bankidSeMobilePKITypeDefSignerID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="bankidSeMobilePKITypeDef" nillable="true" type="tns:bankidSeMobilePKITypeDef" />
+      <xs:complexType name="ArrayOfbankidSeMobilePKITypeDefCertificatePolicy">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="bankidSeMobilePKITypeDefCertificatePolicy" type="tns:bankidSeMobilePKITypeDefCertificatePolicy" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfbankidSeMobilePKITypeDefCertificatePolicy" nillable="true" type="tns:ArrayOfbankidSeMobilePKITypeDefCertificatePolicy" />
+      <xs:simpleType name="bankidSeMobilePKITypeDefCertificatePolicy">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PersonalMobile" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="bankidSeMobilePKITypeDefCertificatePolicy" nillable="true" type="tns:bankidSeMobilePKITypeDefCertificatePolicy" />
+      <xs:complexType name="bankidSeMobilePKITypeDefSignerID">
+        <xs:sequence>
+          <xs:element name="iDTypeField" type="tns:bankidSeMobilePKITypeDefSignerIDIDType" />
+          <xs:element name="iDValueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="bankidSeMobilePKITypeDefSignerID" nillable="true" type="tns:bankidSeMobilePKITypeDefSignerID" />
+      <xs:simpleType name="bankidSeMobilePKITypeDefSignerIDIDType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SSN" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="bankidSeMobilePKITypeDefSignerIDIDType" nillable="true" type="tns:bankidSeMobilePKITypeDefSignerIDIDType" />
+      <xs:complexType name="acceptedPKIsTypeDefBuypass">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:buypassPKITypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="acceptedPKIsTypeDefBuypass" nillable="true" type="tns:acceptedPKIsTypeDefBuypass" />
+      <xs:complexType name="buypassPKITypeDef">
+        <xs:sequence>
+          <xs:element name="certificatePolicyField" type="tns:buypassPKITypeDefCertificatePolicy" />
+          <xs:element name="certificatePolicyFieldSpecified" type="xs:boolean" />
+          <xs:element name="signerIDField" nillable="true" type="tns:buypassPKITypeDefSignerID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="buypassPKITypeDef" nillable="true" type="tns:buypassPKITypeDef" />
+      <xs:simpleType name="buypassPKITypeDefCertificatePolicy">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Personal" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="buypassPKITypeDefCertificatePolicy" nillable="true" type="tns:buypassPKITypeDefCertificatePolicy" />
+      <xs:complexType name="buypassPKITypeDefSignerID">
+        <xs:sequence>
+          <xs:element name="iDTypeField" type="tns:buypassPKITypeDefSignerIDIDType" />
+          <xs:element name="iDValueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="buypassPKITypeDefSignerID" nillable="true" type="tns:buypassPKITypeDefSignerID" />
+      <xs:simpleType name="buypassPKITypeDefSignerIDIDType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SSN" />
+          <xs:enumeration value="BPID" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="buypassPKITypeDefSignerIDIDType" nillable="true" type="tns:buypassPKITypeDefSignerIDIDType" />
+      <xs:complexType name="acceptedPKIsTypeDefDigitalSignatur">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:digitalSignaturPKITypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="acceptedPKIsTypeDefDigitalSignatur" nillable="true" type="tns:acceptedPKIsTypeDefDigitalSignatur" />
+      <xs:complexType name="digitalSignaturPKITypeDef">
+        <xs:sequence>
+          <xs:element name="certificatePolicyField" type="tns:digitalSignaturPKITypeDefCertificatePolicy" />
+          <xs:element name="certificatePolicyFieldSpecified" type="xs:boolean" />
+          <xs:element name="signerIDField" nillable="true" type="tns:digitalSignaturPKITypeDefSignerID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="digitalSignaturPKITypeDef" nillable="true" type="tns:digitalSignaturPKITypeDef" />
+      <xs:simpleType name="digitalSignaturPKITypeDefCertificatePolicy">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Personal" />
+          <xs:enumeration value="Employee" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="digitalSignaturPKITypeDefCertificatePolicy" nillable="true" type="tns:digitalSignaturPKITypeDefCertificatePolicy" />
+      <xs:complexType name="digitalSignaturPKITypeDefSignerID">
+        <xs:sequence>
+          <xs:element name="iDTypeField" type="tns:digitalSignaturPKITypeDefSignerIDIDType" />
+          <xs:element name="iDValueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="digitalSignaturPKITypeDefSignerID" nillable="true" type="tns:digitalSignaturPKITypeDefSignerID" />
+      <xs:simpleType name="digitalSignaturPKITypeDefSignerIDIDType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SSN" />
+          <xs:enumeration value="PID" />
+          <xs:enumeration value="RID" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="digitalSignaturPKITypeDefSignerIDIDType" nillable="true" type="tns:digitalSignaturPKITypeDefSignerIDIDType" />
+      <xs:complexType name="acceptedPKIsTypeDefNemID">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:nemidPKITypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="acceptedPKIsTypeDefNemID" nillable="true" type="tns:acceptedPKIsTypeDefNemID" />
+      <xs:complexType name="nemidPKITypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CertificatePolicy" type="tns:nemidPKITypeDefCertificatePolicy" />
+          <xs:element minOccurs="0" name="CertificatePolicySpecified" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SignerID" nillable="true" type="tns:nemidPKITypeDefSignerID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="nemidPKITypeDef" nillable="true" type="tns:nemidPKITypeDef" />
+      <xs:complexType name="nemidPKITypeDefSignerID">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IDType" type="tns:nemidPKITypeDefSignerIDIDType" />
+          <xs:element minOccurs="0" name="IDValue" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="nemidPKITypeDefSignerID" nillable="true" type="tns:nemidPKITypeDefSignerID" />
+      <xs:complexType name="acceptedPKIsTypeDefNemIDOpenSign">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:nemidPKITypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="acceptedPKIsTypeDefNemIDOpenSign" nillable="true" type="tns:acceptedPKIsTypeDefNemIDOpenSign" />
+      <xs:complexType name="acceptedPKIsTypeDefTeliaID">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:TeliaIDType">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="acceptedPKIsTypeDefTeliaID" nillable="true" type="tns:acceptedPKIsTypeDefTeliaID" />
+      <xs:complexType name="TeliaIDType">
+        <xs:sequence>
+          <xs:element name="certificatePolicyField" nillable="true" type="tns:ArrayOfTeliaIDTypeCertificatePolicy" />
+          <xs:element name="signerIDField" nillable="true" type="tns:TeliaIDTypeSignerID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TeliaIDType" nillable="true" type="tns:TeliaIDType" />
+      <xs:complexType name="ArrayOfTeliaIDTypeCertificatePolicy">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="TeliaIDTypeCertificatePolicy" type="tns:TeliaIDTypeCertificatePolicy" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfTeliaIDTypeCertificatePolicy" nillable="true" type="tns:ArrayOfTeliaIDTypeCertificatePolicy" />
+      <xs:simpleType name="TeliaIDTypeCertificatePolicy">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PersonalSoft" />
+          <xs:enumeration value="PersonalSmartcard" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="TeliaIDTypeCertificatePolicy" nillable="true" type="tns:TeliaIDTypeCertificatePolicy" />
+      <xs:complexType name="TeliaIDTypeSignerID">
+        <xs:sequence>
+          <xs:element name="iDTypeField" type="tns:TeliaIDTypeSignerIDIDType" />
+          <xs:element name="iDValueField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TeliaIDTypeSignerID" nillable="true" type="tns:TeliaIDTypeSignerID" />
+      <xs:simpleType name="TeliaIDTypeSignerIDIDType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SSN" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="TeliaIDTypeSignerIDIDType" nillable="true" type="tns:TeliaIDTypeSignerIDIDType" />
+      <xs:complexType name="signerNotificationChannelsTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NotificationChannels" nillable="true" type="tns:ArrayOfsignerNotificationChannelsTypeDefNotificationChannel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signerNotificationChannelsTypeDef" nillable="true" type="tns:signerNotificationChannelsTypeDef" />
+      <xs:complexType name="ArrayOfsignerNotificationChannelsTypeDefNotificationChannel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="signerNotificationChannelsTypeDefNotificationChannel" nillable="true" type="tns:signerNotificationChannelsTypeDefNotificationChannel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfsignerNotificationChannelsTypeDefNotificationChannel" nillable="true" type="tns:ArrayOfsignerNotificationChannelsTypeDefNotificationChannel" />
+      <xs:complexType name="signerNotificationChannelsTypeDefNotificationChannel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Channel" nillable="true" type="tns:signerChannelsTypeDef" />
+          <xs:element minOccurs="0" name="Triggers" nillable="true" type="tns:signerNotificationTriggersTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signerNotificationChannelsTypeDefNotificationChannel" nillable="true" type="tns:signerNotificationChannelsTypeDefNotificationChannel" />
+      <xs:complexType name="signerChannelsTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Item" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signerChannelsTypeDef" nillable="true" type="tns:signerChannelsTypeDef" />
+      <xs:complexType name="emailAddressTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EmailText" nillable="true" type="tns:emailTextTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="emailAddressTypeDef" nillable="true" type="tns:emailAddressTypeDef" />
+      <xs:complexType name="emailTextTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BodyFragment" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="emailTextTypeDef" nillable="true" type="tns:emailTextTypeDef" />
+      <xs:complexType name="smsAddressTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SMSText" nillable="true" type="tns:smsTextTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="smsAddressTypeDef" nillable="true" type="tns:smsAddressTypeDef" />
+      <xs:complexType name="smsTextTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BodyFragment" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="smsTextTypeDef" nillable="true" type="tns:smsTextTypeDef" />
+      <xs:complexType name="signerNotificationTriggersTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Trigger" nillable="true" type="tns:ArrayOfsignerNotificationTriggersTypeDefTrigger" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signerNotificationTriggersTypeDef" nillable="true" type="tns:signerNotificationTriggersTypeDef" />
+      <xs:complexType name="ArrayOfsignerNotificationTriggersTypeDefTrigger">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="signerNotificationTriggersTypeDefTrigger" type="tns:signerNotificationTriggersTypeDefTrigger" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfsignerNotificationTriggersTypeDefTrigger" nillable="true" type="tns:ArrayOfsignerNotificationTriggersTypeDefTrigger" />
+      <xs:complexType name="InsertOrderSignersSignerMerchantSigner">
+        <xs:sequence>
+          <xs:element name="localSignerReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="signingPKITypeField" type="tns:InsertOrderSignersSignerMerchantSignerSigningPKIType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderSignersSignerMerchantSigner" nillable="true" type="tns:InsertOrderSignersSignerMerchantSigner" />
+      <xs:simpleType name="InsertOrderSignersSignerMerchantSignerSigningPKIType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="BankID" />
+          <xs:enumeration value="Buypass" />
+          <xs:enumeration value="BankIDSE" />
+          <xs:enumeration value="BankIDSEMobile" />
+          <xs:enumeration value="NemID" />
+          <xs:enumeration value="NemIDOpenSign" />
+          <xs:enumeration value="TeliaID" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="InsertOrderSignersSignerMerchantSignerSigningPKIType" nillable="true" type="tns:InsertOrderSignersSignerMerchantSignerSigningPKIType" />
+      <xs:complexType name="InsertOrderWebContexts">
+        <xs:sequence>
+          <xs:element name="webContextField" nillable="true" type="tns:ArrayOfwebCtxTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderWebContexts" nillable="true" type="tns:InsertOrderWebContexts" />
+      <xs:complexType name="ArrayOfwebCtxTypeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="webCtxTypeDef" nillable="true" type="tns:webCtxTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfwebCtxTypeDef" nillable="true" type="tns:ArrayOfwebCtxTypeDef" />
+      <xs:complexType name="webCtxTypeDef">
+        <xs:sequence>
+          <xs:element name="abortURLField" nillable="true" type="xs:string" />
+          <xs:element name="errorURLBaseField" nillable="true" type="xs:string" />
+          <xs:element name="exitURLField" nillable="true" type="xs:string" />
+          <xs:element name="localWebContextRefField" nillable="true" type="xs:string" />
+          <xs:element name="signURLBaseField" nillable="true" type="xs:string" />
+          <xs:element name="styleURLField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="webCtxTypeDef" nillable="true" type="tns:webCtxTypeDef" />
+      <xs:complexType name="InsertOrderResponse">
+        <xs:sequence>
+          <xs:element name="orderIDField" nillable="true" type="xs:string" />
+          <xs:element name="transRefField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InsertOrderResponse" nillable="true" type="tns:InsertOrderResponse" />
+      <xs:complexType name="GetPAdES">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IncludeSSN" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IncludeSSNSpecified" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PAdESDocumentReference" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetPAdES" nillable="true" type="tns:GetPAdES" />
+      <xs:complexType name="GetPAdESResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PAdESDocumentReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PAdESSignedDocumentBytes" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetPAdESResponse" nillable="true" type="tns:GetPAdESResponse" />
+      <xs:complexType name="PreInitOrder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ExitUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Sref" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PreInitOrder" nillable="true" type="tns:PreInitOrder" />
+      <xs:complexType name="PreInitOrderResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ExitUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Sref" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PreInitOrderResponse" nillable="true" type="tns:PreInitOrderResponse" />
+      <xs:complexType name="GetOrders">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MetaDataFilter" nillable="true" type="tns:metaDataTypeDef" />
+          <xs:element minOccurs="0" name="OrderStatusFilter" type="tns:GetOrderStatusResponseOrderStatus" />
+          <xs:element minOccurs="0" name="SignerFilter" nillable="true" type="tns:GetOrdersSignerFilter" />
+          <xs:element minOccurs="0" name="TimeFilter" nillable="true" type="tns:timeRangeTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrders" nillable="true" type="tns:GetOrders" />
+      <xs:complexType name="GetOrdersSignerFilter">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:signerFilterTypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="GetOrdersSignerFilter" nillable="true" type="tns:GetOrdersSignerFilter" />
+      <xs:complexType name="signerFilterTypeDef">
+        <xs:sequence>
+          <xs:element name="localSignerReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="signerStatusField" type="tns:signerFilterTypeDefSignerStatus" />
+          <xs:element name="signerStatusFieldSpecified" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="signerFilterTypeDef" nillable="true" type="tns:signerFilterTypeDef" />
+      <xs:complexType name="timeRangeTypeDef">
+        <xs:sequence>
+          <xs:element name="endTimeField" type="xs:dateTime" />
+          <xs:element name="startTimeField" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="timeRangeTypeDef" nillable="true" type="tns:timeRangeTypeDef" />
+      <xs:complexType name="GetOrdersResponse">
+        <xs:sequence>
+          <xs:element name="metaDataFilterField" nillable="true" type="tns:metaDataTypeDef" />
+          <xs:element name="orderResultsField" nillable="true" type="tns:ArrayOfGetOrdersResponseOrderResult" />
+          <xs:element name="orderStatusFilterField" type="tns:GetOrderStatusResponseOrderStatus" />
+          <xs:element name="orderStatusFilterFieldSpecified" type="xs:boolean" />
+          <xs:element name="searchHitsField" nillable="true" type="xs:string" />
+          <xs:element name="signerFilterField" nillable="true" type="tns:GetOrdersResponseSignerFilter" />
+          <xs:element name="timeFilterField" nillable="true" type="tns:timeRangeTypeDef" />
+          <xs:element name="transRefField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrdersResponse" nillable="true" type="tns:GetOrdersResponse" />
+      <xs:complexType name="ArrayOfGetOrdersResponseOrderResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="GetOrdersResponseOrderResult" nillable="true" type="tns:GetOrdersResponseOrderResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfGetOrdersResponseOrderResult" nillable="true" type="tns:ArrayOfGetOrdersResponseOrderResult" />
+      <xs:complexType name="GetOrdersResponseOrderResult">
+        <xs:sequence>
+          <xs:element name="metaDataField" nillable="true" type="tns:GetOrdersResponseOrderResultMetaData" />
+          <xs:element name="orderDeadlineField" type="xs:dateTime" />
+          <xs:element name="orderDescriptionField" nillable="true" type="xs:string" />
+          <xs:element name="orderStatusField" type="tns:GetOrderStatusResponseOrderStatus" />
+          <xs:element name="resultOrderIDField" nillable="true" type="xs:string" />
+          <xs:element name="signerStatusField" type="tns:signerFilterTypeDefSignerStatus" />
+          <xs:element name="signerStatusFieldSpecified" type="xs:boolean" />
+          <xs:element name="statusNoteField" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrdersResponseOrderResult" nillable="true" type="tns:GetOrdersResponseOrderResult" />
+      <xs:complexType name="GetOrdersResponseOrderResultMetaData">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:metaDataTypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="GetOrdersResponseOrderResultMetaData" nillable="true" type="tns:GetOrdersResponseOrderResultMetaData" />
+      <xs:complexType name="GetOrdersResponseSignerFilter">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:signerFilterTypeDef">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="GetOrdersResponseSignerFilter" nillable="true" type="tns:GetOrdersResponseSignerFilter" />
+      <xs:complexType name="GetOrderDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrderDetails" nillable="true" type="tns:GetOrderDetails" />
+      <xs:complexType name="GetOrderDetailsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Documents" nillable="true" type="tns:GetOrderDetailsResponseDocuments" />
+          <xs:element minOccurs="0" name="ExecutionDetails" nillable="true" type="tns:GetOrderDetailsResponseExecutionDetails" />
+          <xs:element minOccurs="0" name="OrderDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderStatus" type="tns:GetOrderStatusResponseOrderStatus" />
+          <xs:element minOccurs="0" name="StatusNote" nillable="true" type="xs:anyType" />
+          <xs:element minOccurs="0" name="TransRef" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrderDetailsResponse" nillable="true" type="tns:GetOrderDetailsResponse" />
+      <xs:complexType name="GetOrderDetailsResponseDocuments">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocumentDetails" nillable="true" type="tns:ArrayOfGetOrderDetailsResponseDocumentsDocumentDetails" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrderDetailsResponseDocuments" nillable="true" type="tns:GetOrderDetailsResponseDocuments" />
+      <xs:complexType name="ArrayOfGetOrderDetailsResponseDocumentsDocumentDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="GetOrderDetailsResponseDocumentsDocumentDetails" nillable="true" type="tns:GetOrderDetailsResponseDocumentsDocumentDetails" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfGetOrderDetailsResponseDocumentsDocumentDetails" nillable="true" type="tns:ArrayOfGetOrderDetailsResponseDocumentsDocumentDetails" />
+      <xs:complexType name="GetOrderDetailsResponseDocumentsDocumentDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Presentation" nillable="true" type="tns:GetOrderDetailsResponseDocumentsDocumentDetailsPresentation" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrderDetailsResponseDocumentsDocumentDetails" nillable="true" type="tns:GetOrderDetailsResponseDocumentsDocumentDetails" />
+      <xs:complexType name="GetOrderDetailsResponseDocumentsDocumentDetailsPresentation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrderDetailsResponseDocumentsDocumentDetailsPresentation" nillable="true" type="tns:GetOrderDetailsResponseDocumentsDocumentDetailsPresentation" />
+      <xs:complexType name="GetOrderDetailsResponseExecutionDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OrderDeadline" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Steps" nillable="true" type="tns:GetOrderDetailsResponseExecutionDetailsSteps" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrderDetailsResponseExecutionDetails" nillable="true" type="tns:GetOrderDetailsResponseExecutionDetails" />
+      <xs:complexType name="GetOrderDetailsResponseExecutionDetailsSteps">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StepDetails" nillable="true" type="tns:ArrayOfGetOrderDetailsResponseExecutionDetailsStepsStepDetails" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrderDetailsResponseExecutionDetailsSteps" nillable="true" type="tns:GetOrderDetailsResponseExecutionDetailsSteps" />
+      <xs:complexType name="ArrayOfGetOrderDetailsResponseExecutionDetailsStepsStepDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="GetOrderDetailsResponseExecutionDetailsStepsStepDetails" nillable="true" type="tns:GetOrderDetailsResponseExecutionDetailsStepsStepDetails" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfGetOrderDetailsResponseExecutionDetailsStepsStepDetails" nillable="true" type="tns:ArrayOfGetOrderDetailsResponseExecutionDetailsStepsStepDetails" />
+      <xs:complexType name="GetOrderDetailsResponseExecutionDetailsStepsStepDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SigningProcessDetails" nillable="true" type="tns:ArrayOfSigningProcessDetails" />
+          <xs:element minOccurs="0" name="Status" type="tns:stepStatusTypeDef" />
+          <xs:element minOccurs="0" name="StepDeadline" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="StepDeadlineSpecified" type="xs:boolean" />
+          <xs:element minOccurs="0" name="StepNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrderDetailsResponseExecutionDetailsStepsStepDetails" nillable="true" type="tns:GetOrderDetailsResponseExecutionDetailsStepsStepDetails" />
+      <xs:complexType name="ArrayOfSigningProcessDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningProcessDetails" nillable="true" type="tns:SigningProcessDetails" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningProcessDetails" nillable="true" type="tns:ArrayOfSigningProcessDetails" />
+      <xs:complexType name="SigningProcessDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RejectText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ReminderSettings" nillable="true" type="tns:SigningProcessDetailsReminderSettings" />
+          <xs:element minOccurs="0" name="SigningPKI" type="tns:SigningProcessDetailsSigningPKI" />
+          <xs:element minOccurs="0" name="SigningPKISpecified" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SigningProcessDeadline" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SigningProcessDeadlineSpecified" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Status" type="tns:signingProcessStatusTypeDef" />
+          <xs:element minOccurs="0" name="TerminateOrderOnSignerRejection" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TerminateOrderOnSignerRejectionSpecified" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Timestamp" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TimestampSpecified" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningProcessDetails" nillable="true" type="tns:SigningProcessDetails" />
+      <xs:complexType name="SigningProcessDetailsReminderSettings">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Interval" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningProcessDetailsReminderSettings" nillable="true" type="tns:SigningProcessDetailsReminderSettings" />
+      <xs:simpleType name="SigningProcessDetailsSigningPKI">
+        <xs:list>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="BankID">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="BankIDNOMobile">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="BankIDNOApp">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="Buypass">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="NemID">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="DigitalSignatur">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="BankIDSE">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="BankIDSEMobile">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="TeliaID">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="NemiIDOpenSign">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:list>
+      </xs:simpleType>
+      <xs:element name="SigningProcessDetailsSigningPKI" nillable="true" type="tns:SigningProcessDetailsSigningPKI" />
+      <xs:simpleType name="stepStatusTypeDef">
+        <xs:list>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Active">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="CancelledByMerchant">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="Expired">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="RejectedBySigner">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="Complete">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="ExpiredByProxy">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="Pending">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:enumeration>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:list>
+      </xs:simpleType>
+      <xs:element name="stepStatusTypeDef" nillable="true" type="tns:stepStatusTypeDef" />
+      <xs:complexType name="CancelOrder">
+        <xs:sequence>
+          <xs:element name="orderIDField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CancelOrder" nillable="true" type="tns:CancelOrder" />
+      <xs:complexType name="DeleteDocumentData">
+        <xs:sequence>
+          <xs:element name="localDocumentReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="orderIDField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DeleteDocumentData" nillable="true" type="tns:DeleteDocumentData" />
+      <xs:complexType name="CancelOrderResponse">
+        <xs:sequence>
+          <xs:element name="orderIDField" nillable="true" type="xs:string" />
+          <xs:element name="transRefField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CancelOrderResponse" nillable="true" type="tns:CancelOrderResponse" />
+      <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+          <xs:element name="errorCodeField" nillable="true" type="xs:string" />
+          <xs:element name="errorTextField" nillable="true" type="xs:string" />
+          <xs:element name="orderIDField" nillable="true" type="xs:string" />
+          <xs:element name="transRefField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ErrorResponse" nillable="true" type="tns:ErrorResponse" />
+      <xs:complexType name="GeneratePAdES">
+        <xs:sequence>
+          <xs:element name="languageField" nillable="true" type="xs:string" />
+          <xs:element name="pAdESDocumentReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="sDOField" nillable="true" type="tns:GeneratePAdESSDO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GeneratePAdES" nillable="true" type="tns:GeneratePAdES" />
+      <xs:complexType name="GeneratePAdESSDO">
+        <xs:sequence>
+          <xs:element name="base64SDOBytesField" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GeneratePAdESSDO" nillable="true" type="tns:GeneratePAdESSDO" />
+      <xs:complexType name="GeneratePAdESResponse">
+        <xs:sequence>
+          <xs:element name="pAdESDocumentReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="pAdESSignedDocumentBytesField" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GeneratePAdESResponse" nillable="true" type="tns:GeneratePAdESResponse" />
+      <xs:complexType name="GetDocuments">
+        <xs:sequence>
+          <xs:element name="clientEncryptionKey" nillable="true" type="xs:string" />
+          <xs:element name="localDocumentReferenceField" nillable="true" type="xs:string" />
+          <xs:element name="orderIDField" nillable="true" type="xs:string" />
+          <xs:element name="returnDocumentField" type="xs:boolean" />
+          <xs:element name="returnSDOField" nillable="true" type="tns:GetDocumentsReturnSDO" />
+          <xs:element name="storageProviderSystemName" nillable="true" type="xs:string" />
+          <xs:element name="userId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetDocuments" nillable="true" type="tns:GetDocuments" />
+      <xs:complexType name="GetDocumentsReturnSDO">
+        <xs:sequence>
+          <xs:element name="returnPartialField" type="xs:boolean" />
+          <xs:element name="valueField" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetDocumentsReturnSDO" nillable="true" type="tns:GetDocumentsReturnSDO" />
+      <xs:complexType name="ConvertDocumentToValidPdfRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Base64Content" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DocumentName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ConvertDocumentToValidPdfRequest" nillable="true" type="tns:ConvertDocumentToValidPdfRequest" />
+      <xs:complexType name="ConvertDocumentToValidPdfResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Base64Content" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DocumentName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ConvertDocumentToValidPdfResponse" nillable="true" type="tns:ConvertDocumentToValidPdfResponse" />
+      <xs:complexType name="GetDocumentResponse">
+        <xs:sequence>
+          <xs:element name="documentReference" nillable="true" type="xs:string" />
+          <xs:element name="fileBytes" nillable="true" type="xs:base64Binary" />
+          <xs:element name="fileName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetDocumentResponse" nillable="true" type="tns:GetDocumentResponse" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfstring">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+      <xs:complexType name="ArrayOfint">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" />
+    </xs:schema>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Orders" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/" />
+      <xs:complexType name="GetMyOrdersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Orders" nillable="true" type="tns:ArrayOfNewShortOrderDetails" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Orders" minOccurs="0" name="Paging" nillable="true" type="q1:PagingModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetMyOrdersResponse" nillable="true" type="tns:GetMyOrdersResponse" />
+      <xs:complexType name="ArrayOfNewShortOrderDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="NewShortOrderDetails" nillable="true" type="tns:NewShortOrderDetails" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfNewShortOrderDetails" nillable="true" type="tns:ArrayOfNewShortOrderDetails" />
+      <xs:complexType name="NewShortOrderDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Deadline" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IsCreator" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsLocallyProcessed" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsMyOrder" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsOwner" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsViewer" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LocalDocumentUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Order" nillable="true" type="tns:SigningOrderModel" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Status" type="q2:OrderStatus" />
+          <xs:element minOccurs="0" name="TotalSigned" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalSigners" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="NewShortOrderDetails" nillable="true" type="tns:NewShortOrderDetails" />
+      <xs:complexType name="SigningOrderModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CreatorId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DatePayed" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Deadline" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DocumentTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Documents" nillable="true" type="tns:ArrayOfDocumentViewModel" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IsPrivate" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Notifications" nillable="true" type="q3:ArrayOfMerchantSigningNotification" />
+          <xs:element minOccurs="0" name="OrderDescription" nillable="true" type="xs:string" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="OrderStatus" type="q4:OrderStatus" />
+          <xs:element minOccurs="0" name="OwnerId" type="xs:int" />
+          <xs:element minOccurs="0" name="SendSignedDataAsAttachmentInEmail" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Signers" nillable="true" type="tns:ArrayOfSignerDataViewModel" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SigningExecutionDetails" nillable="true" type="q5:ArrayOfSigningExecutionDetails" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SigningMetadata" nillable="true" type="q6:ArrayOfSigningMetadataItem" />
+          <xs:element minOccurs="0" name="UniqueId" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningOrderModel" nillable="true" type="tns:SigningOrderModel" />
+      <xs:complexType name="ArrayOfDocumentViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DocumentViewModel" nillable="true" type="tns:DocumentViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDocumentViewModel" nillable="true" type="tns:ArrayOfDocumentViewModel" />
+      <xs:complexType name="DocumentViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Base64Content" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="DocumentType" type="q7:DocumentType" />
+          <xs:element minOccurs="0" name="DownloadId" type="xs:int" />
+          <xs:element minOccurs="0" name="IsSigned" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DocumentViewModel" nillable="true" type="tns:DocumentViewModel" />
+      <xs:complexType name="ArrayOfSignerDataViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SignerDataViewModel" nillable="true" type="tns:SignerDataViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSignerDataViewModel" nillable="true" type="tns:ArrayOfSignerDataViewModel" />
+      <xs:complexType name="SignerDataViewModel">
+        <xs:sequence>
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="AcceptedPkis" nillable="true" type="q8:SignerAcceptedPki" />
+          <xs:element minOccurs="0" name="DateSigned" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MemberId" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Notifications" nillable="true" type="q9:ArrayOfCustomerSigningNotification" />
+          <xs:element minOccurs="0" name="SendSignedDataAsAttachmentInEmail" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SendSignitEmails" type="xs:boolean" />
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="SignerStatus" type="q10:signerFilterTypeDefSignerStatus" />
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SignerType" type="q11:SignerType" />
+          <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SignerDataViewModel" nillable="true" type="tns:SignerDataViewModel" />
+      <xs:complexType name="OrderDetailsModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DaysToDeadline" type="xs:int" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Details" nillable="true" type="q12:GetOrderDetailsResponseExecutionDetails" />
+          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Document" nillable="true" type="q13:GetOrderDetailsResponseDocumentsDocumentDetails" />
+          <xs:element minOccurs="0" name="Documents" nillable="true" type="tns:ArrayOfDocumentViewModel" />
+          <xs:element minOccurs="0" name="Expired" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
+          <xs:element minOccurs="0" name="IsCreator" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsOwner" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LocalSignerMemberId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NotSignedYet" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
+          <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
+          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="OrderStatus" type="q14:GetOrderStatusResponseOrderStatus" />
+          <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="RealDocument" nillable="true" type="q15:Document" />
+          <xs:element minOccurs="0" name="Signed" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
+          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SigningExecutionDetails" nillable="true" type="q16:ArrayOfSigningExecutionDetails" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrderDetailsModel" nillable="true" type="tns:OrderDetailsModel" />
+      <xs:complexType name="ArrayOfSigningProcessDetailsModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningProcessDetailsModel" nillable="true" type="tns:SigningProcessDetailsModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningProcessDetailsModel" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
+      <xs:complexType name="SigningProcessDetailsModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MemberId" type="xs:int" />
+          <xs:element minOccurs="0" name="SignerName" nillable="true" type="xs:string" />
+          <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q17:signingProcessStatusTypeDef" />
+          <xs:element minOccurs="0" name="Timestamp" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningProcessDetailsModel" nillable="true" type="tns:SigningProcessDetailsModel" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Orders" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Orders" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="PagingModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CurrentPage" type="xs:int" />
+          <xs:element minOccurs="0" name="OrdersPerPage" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalPages" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PagingModel" nillable="true" type="tns:PagingModel" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Documents" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" />
+      <xs:complexType name="GetSigningOrderDetailsResponse">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" minOccurs="0" name="OrderDetails" nillable="true" type="q1:OrderDetailsModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetSigningOrderDetailsResponse" nillable="true" type="tns:GetSigningOrderDetailsResponse" />
+      <xs:complexType name="PutSigningOrderResponse">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" minOccurs="0" name="SigningOrder" nillable="true" type="q2:SigningOrderModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PutSigningOrderResponse" nillable="true" type="tns:PutSigningOrderResponse" />
+      <xs:complexType name="RequestSigningProcessResponse">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Documents" minOccurs="0" name="SigningProcessProcess" nillable="true" type="q3:SigningProcessModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RequestSigningProcessResponse" nillable="true" type="tns:RequestSigningProcessResponse" />
+      <xs:complexType name="GetMyCompanyAccountsResponse">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" minOccurs="0" name="SigningGroups" nillable="true" type="q4:ArrayOfSigningGroupViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetMyCompanyAccountsResponse" nillable="true" type="tns:GetMyCompanyAccountsResponse" />
+      <xs:complexType name="SendSigningEmailResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ResponseTest" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SendSigningEmailResponse" nillable="true" type="tns:SendSigningEmailResponse" />
+      <xs:complexType name="SendSigningEmailRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SendSigningEmailRequest" nillable="true" type="tns:SendSigningEmailRequest" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Documents" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Documents" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/" />
+      <xs:complexType name="SigningProcessModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BaseUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Css" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Deadline" type="xs:dateTime" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Document" nillable="true" type="q1:Document" />
+          <xs:element minOccurs="0" name="IframeCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Signers" nillable="true" type="q2:ArrayOfSignerData" />
+          <xs:element minOccurs="0" name="SigningProcessResults" nillable="true" type="tns:ArrayOfSigningProcessResultModel" />
+          <xs:element minOccurs="0" name="Sref" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningProcessModel" nillable="true" type="tns:SigningProcessModel" />
+      <xs:complexType name="ArrayOfSigningProcessResultModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningProcessResultModel" nillable="true" type="tns:SigningProcessResultModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningProcessResultModel" nillable="true" type="tns:ArrayOfSigningProcessResultModel" />
+      <xs:complexType name="SigningProcessResultModel">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" minOccurs="0" name="DocumentDetails" nillable="true" type="q3:DocumentViewModel" />
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LocalWebContextRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SignUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SigningProcessId" type="xs:long" />
+          <xs:element minOccurs="0" name="SigningTime" type="xs:dateTime" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q4:signingProcessStatusTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningProcessResultModel" nillable="true" type="tns:SigningProcessResultModel" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Messages" />
+      <xs:complexType name="ArrayOfSigningGroupViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningGroupViewModel" nillable="true" type="tns:SigningGroupViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningGroupViewModel" nillable="true" type="tns:ArrayOfSigningGroupViewModel" />
+      <xs:complexType name="SigningGroupViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" minOccurs="0" name="AvailablePaymentPlans" nillable="true" type="q1:ArrayOfPaymentPlan" />
+          <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CommitmentId" type="xs:int" />
+          <xs:element minOccurs="0" name="ContactEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ContactPhone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CustomStylesEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Cvr" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Domain" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FooterBackgroundColor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FooterFontColor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FooterText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="LogoFooter" type="xs:int" />
+          <xs:element minOccurs="0" name="LogoHeader" type="xs:int" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" minOccurs="0" name="Members" nillable="true" type="q2:ArrayOfMemberToGroupViewModel" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Messages" minOccurs="0" name="MessageTemplates" nillable="true" type="q3:ArrayOfMessageTemplate" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NemIdLoginIntervalDays" type="xs:int" />
+          <xs:element minOccurs="0" name="PageTemplate" type="xs:int" />
+          <xs:element minOccurs="0" name="PaymentMethodSystemName" nillable="true" type="xs:string" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" minOccurs="0" name="PaymentPlan" nillable="true" type="q4:PaymentPlan" />
+          <xs:element minOccurs="0" name="PaymentPlanId" type="xs:int" />
+          <xs:element minOccurs="0" name="PostCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SmsNotification" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningGroupViewModel" nillable="true" type="tns:SigningGroupViewModel" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" />
+      <xs:complexType name="ArrayOfPaymentPlan">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentPlan" nillable="true" type="tns:PaymentPlan" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPaymentPlan" nillable="true" type="tns:ArrayOfPaymentPlan" />
+      <xs:complexType name="PaymentPlan">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q1:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="Credits" type="xs:int" />
+              <xs:element minOccurs="0" name="GroupMembersAllowed" type="xs:int" />
+              <xs:element minOccurs="0" name="IsCustomTemplatesAllowed" type="xs:boolean" />
+              <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ModulesIncluded" nillable="true" type="q2:ArrayOfint" />
+              <xs:element minOccurs="0" name="MonthlyPaymentFee" type="xs:decimal" />
+              <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="PaymentCostPerMember" type="xs:decimal" />
+              <xs:element minOccurs="0" name="PaymentCostPerSigner" type="xs:decimal" />
+              <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PaymentPlan" nillable="true" type="tns:PaymentPlan" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" />
+      <xs:complexType name="ArrayOfMemberToGroupViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="MemberToGroupViewModel" nillable="true" type="tns:MemberToGroupViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfMemberToGroupViewModel" nillable="true" type="tns:ArrayOfMemberToGroupViewModel" />
+      <xs:complexType name="MemberToGroupViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GroupId" type="xs:int" />
+          <xs:element minOccurs="0" name="MemberEmail" nillable="true" type="xs:string" />
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MemberEmailsAssociatedWithGroup" nillable="true" type="q1:ArrayOfstring" />
+          <xs:element minOccurs="0" name="MemberId" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Status" type="q2:SigningGroupToMemberStatus" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="MemberToGroupViewModel" nillable="true" type="tns:MemberToGroupViewModel" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Messages" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Messages" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" />
+      <xs:complexType name="ArrayOfMessageTemplate">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageTemplate" nillable="true" type="tns:MessageTemplate" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfMessageTemplate" nillable="true" type="tns:ArrayOfMessageTemplate" />
+      <xs:complexType name="MessageTemplate">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q1:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="BccEmailAddresses" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="Body" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="EmailAccountId" type="xs:int" />
+              <xs:element minOccurs="0" name="From" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="FromName" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+              <xs:element minOccurs="0" name="LimitedToCompany" type="xs:boolean" />
+              <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="Subject" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="TemplateName" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ToEmail" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="MessageTemplate" nillable="true" type="tns:MessageTemplate" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IRemoteOrderService_InsertSigningOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSigningOrder" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_InsertSigningOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSigningOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_InsertOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrder" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_InsertOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetSigningProcesses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSigningProcesses" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetSigningProcesses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSigningProcessesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_CancelOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelOrder" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_CancelOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetOrderDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetails" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetOrderDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetPades_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPades" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetPades_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPadesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_PreInitOrderBeforeSigning_InputMessage">
+    <wsdl:part name="parameters" element="tns:PreInitOrderBeforeSigning" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_PreInitOrderBeforeSigning_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PreInitOrderBeforeSigningResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_ConvertDocumentToValidPdf_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertDocumentToValidPdf" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_ConvertDocumentToValidPdf_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertDocumentToValidPdfResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrders" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_NewOrdersModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewOrdersModel" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_NewOrdersModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewOrdersModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetSigningOrderDetailsResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSigningOrderDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetSigningOrderDetailsResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSigningOrderDetailsResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_PutSigningOrderResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:PutSigningOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_PutSigningOrderResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PutSigningOrderResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_SigningModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:SigningModel" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_SigningModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SigningModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_PreInitOrderResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:PreInitOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_PreInitOrderResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PreInitOrderResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetMyCompanyAccountsResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyCompanyAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetMyCompanyAccountsResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyCompanyAccountsResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetDocumentResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetDocumentResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_SendSigningEmailResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendSigningEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_SendSigningEmailResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendSigningEmailResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_SendSigningEmailRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendSigningEmailRequest" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_SendSigningEmailRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendSigningEmailRequestResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IRemoteOrderService">
+    <wsdl:operation name="InsertSigningOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/InsertSigningOrder" message="tns:IRemoteOrderService_InsertSigningOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/InsertSigningOrderResponse" message="tns:IRemoteOrderService_InsertSigningOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/InsertOrder" message="tns:IRemoteOrderService_InsertOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/InsertOrderResponse" message="tns:IRemoteOrderService_InsertOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSigningProcesses">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetSigningProcesses" message="tns:IRemoteOrderService_GetSigningProcesses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/GetSigningProcessesResponse" message="tns:IRemoteOrderService_GetSigningProcesses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/CancelOrder" message="tns:IRemoteOrderService_CancelOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/CancelOrderResponse" message="tns:IRemoteOrderService_CancelOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetOrderDetails" message="tns:IRemoteOrderService_GetOrderDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/GetOrderDetailsResponse" message="tns:IRemoteOrderService_GetOrderDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPades">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetPades" message="tns:IRemoteOrderService_GetPades_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/GetPadesResponse" message="tns:IRemoteOrderService_GetPades_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PreInitOrderBeforeSigning">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/PreInitOrderBeforeSigning" message="tns:IRemoteOrderService_PreInitOrderBeforeSigning_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/PreInitOrderBeforeSigningResponse" message="tns:IRemoteOrderService_PreInitOrderBeforeSigning_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertDocumentToValidPdf">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/ConvertDocumentToValidPdf" message="tns:IRemoteOrderService_ConvertDocumentToValidPdf_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/ConvertDocumentToValidPdfResponse" message="tns:IRemoteOrderService_ConvertDocumentToValidPdf_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetOrders" message="tns:IRemoteOrderService_GetOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/GetOrdersResponse" message="tns:IRemoteOrderService_GetOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewOrdersModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/NewOrdersModel" message="tns:IRemoteOrderService_NewOrdersModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/NewOrdersModelResponse" message="tns:IRemoteOrderService_NewOrdersModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSigningOrderDetailsResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetSigningOrderDetailsResponse" message="tns:IRemoteOrderService_GetSigningOrderDetailsResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/GetSigningOrderDetailsResponseResponse" message="tns:IRemoteOrderService_GetSigningOrderDetailsResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PutSigningOrderResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/PutSigningOrderResponse" message="tns:IRemoteOrderService_PutSigningOrderResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/PutSigningOrderResponseResponse" message="tns:IRemoteOrderService_PutSigningOrderResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SigningModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/SigningModel" message="tns:IRemoteOrderService_SigningModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/SigningModelResponse" message="tns:IRemoteOrderService_SigningModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PreInitOrderResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/PreInitOrderResponse" message="tns:IRemoteOrderService_PreInitOrderResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/PreInitOrderResponseResponse" message="tns:IRemoteOrderService_PreInitOrderResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyCompanyAccountsResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponse" message="tns:IRemoteOrderService_GetMyCompanyAccountsResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponseResponse" message="tns:IRemoteOrderService_GetMyCompanyAccountsResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetDocumentResponse" message="tns:IRemoteOrderService_GetDocumentResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/GetDocumentResponseResponse" message="tns:IRemoteOrderService_GetDocumentResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSigningEmailResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/SendSigningEmailResponse" message="tns:IRemoteOrderService_SendSigningEmailResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/SendSigningEmailResponseResponse" message="tns:IRemoteOrderService_SendSigningEmailResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSigningEmailRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/SendSigningEmailRequest" message="tns:IRemoteOrderService_SendSigningEmailRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/SendSigningEmailRequestResponse" message="tns:IRemoteOrderService_SendSigningEmailRequest_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IRemoteOrderService" type="tns:IRemoteOrderService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertSigningOrder">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/InsertSigningOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrder">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/InsertOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSigningProcesses">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/GetSigningProcesses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/CancelOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetails">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/GetOrderDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPades">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/GetPades" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreInitOrderBeforeSigning">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/PreInitOrderBeforeSigning" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertDocumentToValidPdf">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/ConvertDocumentToValidPdf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/GetOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewOrdersModel">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/NewOrdersModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSigningOrderDetailsResponse">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/GetSigningOrderDetailsResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutSigningOrderResponse">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/PutSigningOrderResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SigningModel">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/SigningModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreInitOrderResponse">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/PreInitOrderResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyCompanyAccountsResponse">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentResponse">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/GetDocumentResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSigningEmailResponse">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/SendSigningEmailResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSigningEmailRequest">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/SendSigningEmailRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RemoteOrderService">
+    <wsdl:port name="BasicHttpBinding_IRemoteOrderService" binding="tns:BasicHttpBinding_IRemoteOrderService">
+      <soap:address location="http://pp.signplatform.com/wcf/RemoteOrderService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

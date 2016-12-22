@@ -1,0 +1,36 @@
+﻿@model SignitIntegrationSample.Models.SigningModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = null;
+}
+<style>
+    .eSigning {
+        width: 1000px;
+        height: 500px;
+        border: none;
+    }
+     
+</style>
+
+<h2>title</h2>
+Sref url: @Model.Sref
+<script type="text/javascript">
+    var Signing = function () {
+    };
+
+    Signing.init = function(initElement) {
+        $.get('https://pp.signplatform.com/umbraco/surface/document/sign?sref=@Model.Sref', function (data) {
+            $(initElement).append(data);
+        });
+    }
+
+    $(document).ready(function () {
+        Signing.init('#signAppend');
+    });
+</script>
+
+<div id="signAppend"></div>
+
+@*<iframe name="E-Signing" src="https://www.ts-preprod.bbs.no/sign/init.html?ref=@Model.Sref&forcepkivendor=dk_nemid&deflecttarget=_top" style="width:800px; height:600px"></iframe>*@
+

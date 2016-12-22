@@ -1,0 +1,38 @@
+﻿@using SignitIntegrationSample.RemoteOrderService
+@model SignitIntegrationSample.Models.OrderDetailsModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Master.cshtml";
+}
+
+<h2>Order details</h2>
+
+@if (TempData.ContainsKey("Error"))
+{
+    <h2>
+        Error:
+        @TempData["Error"]
+    </h2>
+}
+@if (Model.OrderStatus == GetOrderStatusResponseOrderStatus.Active)
+{
+    @Html.Action("Sign", "SampleOrder", new
+    {
+        localSignerReference = Model.LocalSignerReference,
+        orderId = Model.OrderId,
+        localDocumentReference = Model.LocalDocumentReference,
+        successRedirectPage = Model.SuccessRedirectPage
+    })
+}
+else if(Model.OrderStatus == GetOrderStatusResponseOrderStatus.Complete)
+{
+    
+    <h2>order id: Order has been signed. You can download signed document here: 
+        <a href ="@Url.RouteUrl(new { orderId = Model.OrderId, localDocumentReference = Model.LocalDocumentReference, Action="DownloadPAdES", Controller="SampleOrder" })">Download</a>    
+    </h2>
+}
+else
+{
+    <h2>Your status: @Model.OrderStatus</h2>
+}
