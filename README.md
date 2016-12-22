@@ -2,6 +2,7 @@
 
 To configure client you have to add several settings in web.config:
 
+```xml
  <!--Signit-->
     <add key="SignitMerchantName" value="" />
     <add key="SignitMerchantPassword" value="" />
@@ -13,6 +14,7 @@ To configure client you have to add several settings in web.config:
     <add key="SignitClientId" value="" />
     <add key="SignitClientSecret" value="" />
 <!--Signit end-->
+```
 
 Here if you provide merchant name and password, you will use signit on behalf of this specific user.
 
