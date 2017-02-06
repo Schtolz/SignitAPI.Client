@@ -38,13 +38,13 @@ namespace SignitIntegrationClient.Client
             return response;
         }
 
-        public async Task<GetMyOrdersResponse> SearchOrders(string searchTerm, BearerToken token = null)
+        public async Task<GetMyOrdersResponse> SearchOrders(string searchTerm=null, string localSignerReference=null, BearerToken token = null)
         {
             var requestToken = token ?? await GetApiToken();
             var response =
                 await
                     GetRequest<GetMyOrdersResponse>(requestToken.Token, ApiBaseUri,
-                        "/api/v1/order/mine?searchTerm=" + searchTerm);
+                        "/api/v1/order/mine?searchTerm=" + searchTerm+"&localSignerReference="+localSignerReference);
             return response;
         }
 

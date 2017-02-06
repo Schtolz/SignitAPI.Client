@@ -59,13 +59,15 @@ namespace SignitIntegrationClient.Client
         /// <param name="token">You can provide custom token here. F.ex. requested via oAuth process</param>
         /// <returns></returns>
         Task<RequestSigningProcessResponse> RequestSigningProcess(GetSigningProcesses getSigningProcesses, BearerToken token = null);
+
         /// <summary>
         /// Looks for an order based on search term. Will be expanded with additional information soon
         /// </summary>
         /// <param name="searchTerm"></param>
+        /// <param name="localSignerReference">Signer reference. Will look into all orders containing this one as a signer</param>
         /// <param name="token">You can provide custom token here. F.ex. requested via oAuth process</param>
         /// <returns></returns>
-        Task<GetMyOrdersResponse> SearchOrders(string searchTerm, BearerToken token = null);
+        Task<GetMyOrdersResponse> SearchOrders(string searchTerm=null, string localSignerReference=null, BearerToken token = null);
         /// <summary>
         /// Returns current logged in user company accounts. It allows to create orders on behalf of company that user is in by setting "OwnerId" in order request
         /// </summary>
