@@ -29,6 +29,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningStep))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcess))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.MessageTemplate))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningOrder))]
@@ -872,6 +873,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SignitIntegrationClient.RemoteOrderService.signingProcessStatusTypeDef StatusField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> TimeStampField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string LocalDocumentReference {
             get {
@@ -933,6 +937,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((this.StatusField.Equals(value) != true)) {
                     this.StatusField = value;
                     this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
                 }
             }
         }
@@ -1004,6 +1021,157 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((object.ReferenceEquals(this.ValueField, value) != true)) {
                     this.ValueField = value;
                     this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SigningWebContext", Namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing")]
+    [System.SerializableAttribute()]
+    public partial class SigningWebContext : SignitIntegrationClient.RemoteOrderService.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AbortUrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ErrorUrlBaseField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExitUrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LocalWebContextRefField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SignUrlBaseField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SignitIntegrationClient.RemoteOrderService.SigningOrder SigningOrderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SigningOrderIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SrefField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StyleUrlField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AbortUrl {
+            get {
+                return this.AbortUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AbortUrlField, value) != true)) {
+                    this.AbortUrlField = value;
+                    this.RaisePropertyChanged("AbortUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorUrlBase {
+            get {
+                return this.ErrorUrlBaseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorUrlBaseField, value) != true)) {
+                    this.ErrorUrlBaseField = value;
+                    this.RaisePropertyChanged("ErrorUrlBase");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ExitUrl {
+            get {
+                return this.ExitUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExitUrlField, value) != true)) {
+                    this.ExitUrlField = value;
+                    this.RaisePropertyChanged("ExitUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LocalWebContextRef {
+            get {
+                return this.LocalWebContextRefField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocalWebContextRefField, value) != true)) {
+                    this.LocalWebContextRefField = value;
+                    this.RaisePropertyChanged("LocalWebContextRef");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SignUrlBase {
+            get {
+                return this.SignUrlBaseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SignUrlBaseField, value) != true)) {
+                    this.SignUrlBaseField = value;
+                    this.RaisePropertyChanged("SignUrlBase");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SignitIntegrationClient.RemoteOrderService.SigningOrder SigningOrder {
+            get {
+                return this.SigningOrderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SigningOrderField, value) != true)) {
+                    this.SigningOrderField = value;
+                    this.RaisePropertyChanged("SigningOrder");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SigningOrderId {
+            get {
+                return this.SigningOrderIdField;
+            }
+            set {
+                if ((this.SigningOrderIdField.Equals(value) != true)) {
+                    this.SigningOrderIdField = value;
+                    this.RaisePropertyChanged("SigningOrderId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sref {
+            get {
+                return this.SrefField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SrefField, value) != true)) {
+                    this.SrefField = value;
+                    this.RaisePropertyChanged("Sref");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StyleUrl {
+            get {
+                return this.StyleUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StyleUrlField, value) != true)) {
+                    this.StyleUrlField = value;
+                    this.RaisePropertyChanged("StyleUrl");
                 }
             }
         }
@@ -1350,6 +1518,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
     public partial class SigningOrder : SignitIntegrationClient.RemoteOrderService.BaseEntity {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CompletedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime CreationTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1383,6 +1554,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
         private int OwnerIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PrivateDataStorageProviderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool SendSignedDataAsAttachmentInEmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1395,7 +1569,23 @@ namespace SignitIntegrationClient.RemoteOrderService {
         private SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[] SigningMetadataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SignitIntegrationClient.RemoteOrderService.SigningWebContext[] SigningWebContextsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Guid UniqueIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CompletedDate {
+            get {
+                return this.CompletedDateField;
+            }
+            set {
+                if ((this.CompletedDateField.Equals(value) != true)) {
+                    this.CompletedDateField = value;
+                    this.RaisePropertyChanged("CompletedDate");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime CreationTime {
@@ -1541,6 +1731,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PrivateDataStorageProvider {
+            get {
+                return this.PrivateDataStorageProviderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrivateDataStorageProviderField, value) != true)) {
+                    this.PrivateDataStorageProviderField = value;
+                    this.RaisePropertyChanged("PrivateDataStorageProvider");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool SendSignedDataAsAttachmentInEmail {
             get {
                 return this.SendSignedDataAsAttachmentInEmailField;
@@ -1588,6 +1791,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((object.ReferenceEquals(this.SigningMetadataField, value) != true)) {
                     this.SigningMetadataField = value;
                     this.RaisePropertyChanged("SigningMetadata");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SignitIntegrationClient.RemoteOrderService.SigningWebContext[] SigningWebContexts {
+            get {
+                return this.SigningWebContextsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SigningWebContextsField, value) != true)) {
+                    this.SigningWebContextsField = value;
+                    this.RaisePropertyChanged("SigningWebContexts");
                 }
             }
         }
@@ -2110,6 +2326,8 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcess))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupToMemberStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.BaseEntity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.merchantNotificationTriggersTypeDefTrigger))]
@@ -2297,18 +2515,22 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.OrderDetailsModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PagingModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetSigningOrderDetailsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PutSigningOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.RequestSigningProcessResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[]))]
@@ -2662,6 +2884,8 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcess))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupToMemberStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.BaseEntity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.merchantNotificationTriggersTypeDefTrigger))]
@@ -2849,18 +3073,22 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.OrderDetailsModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PagingModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetSigningOrderDetailsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PutSigningOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.RequestSigningProcessResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[]))]
@@ -3844,6 +4072,8 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcess))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupToMemberStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.BaseEntity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.merchantNotificationTriggersTypeDefTrigger))]
@@ -4031,18 +4261,22 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.OrderDetailsModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PagingModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetSigningOrderDetailsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PutSigningOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.RequestSigningProcessResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[]))]
@@ -4951,6 +5185,8 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcess))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupToMemberStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.BaseEntity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.merchantNotificationTriggersTypeDefTrigger))]
@@ -5138,18 +5374,22 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.OrderDetailsModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PagingModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetSigningOrderDetailsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PutSigningOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.RequestSigningProcessResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[]))]
@@ -6187,6 +6427,8 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcess))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupToMemberStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.BaseEntity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.merchantNotificationTriggersTypeDefTrigger))]
@@ -6374,18 +6616,22 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.OrderDetailsModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PagingModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetSigningOrderDetailsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PutSigningOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.RequestSigningProcessResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[]))]
@@ -8093,6 +8339,8 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcess))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupToMemberStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.BaseEntity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.merchantNotificationTriggersTypeDefTrigger))]
@@ -8280,18 +8528,22 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.OrderDetailsModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PagingModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetSigningOrderDetailsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PutSigningOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.RequestSigningProcessResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[]))]
@@ -9099,6 +9351,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ErrorUrlBaseField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ExitUrlField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -9111,6 +9366,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorUrlBase {
+            get {
+                return this.ErrorUrlBaseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorUrlBaseField, value) != true)) {
+                    this.ErrorUrlBaseField = value;
+                    this.RaisePropertyChanged("ErrorUrlBase");
+                }
             }
         }
         
@@ -9642,6 +9910,8 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcess))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupToMemberStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.BaseEntity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.merchantNotificationTriggersTypeDefTrigger))]
@@ -9829,18 +10099,22 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.OrderDetailsModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PagingModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetSigningOrderDetailsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PutSigningOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.RequestSigningProcessResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[]))]
@@ -10082,6 +10356,8 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcess))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningMetadataItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContext))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupToMemberStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.BaseEntity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.merchantNotificationTriggersTypeDefTrigger))]
@@ -10269,18 +10545,22 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.OrderDetailsModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningWebContextModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PagingModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetSigningOrderDetailsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PutSigningOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.RequestSigningProcessResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessResultModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningGroupViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.PaymentPlan))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[]))]
@@ -11819,6 +12099,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DocumentNameField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DpiField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -11851,6 +12134,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((object.ReferenceEquals(this.DocumentNameField, value) != true)) {
                     this.DocumentNameField = value;
                     this.RaisePropertyChanged("DocumentName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Dpi {
+            get {
+                return this.DpiField;
+            }
+            set {
+                if ((this.DpiField.Equals(value) != true)) {
+                    this.DpiField = value;
+                    this.RaisePropertyChanged("Dpi");
                 }
             }
         }
@@ -11941,6 +12237,8 @@ namespace SignitIntegrationClient.RemoteOrderService {
         
         private string fileNameField;
         
+        private long sizeField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -11986,6 +12284,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((object.ReferenceEquals(this.fileNameField, value) != true)) {
                     this.fileNameField = value;
                     this.RaisePropertyChanged("fileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public long size {
+            get {
+                return this.sizeField;
+            }
+            set {
+                if ((this.sizeField.Equals(value) != true)) {
+                    this.sizeField = value;
+                    this.RaisePropertyChanged("size");
                 }
             }
         }
@@ -12071,6 +12382,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CompletedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime DeadlineField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12113,6 +12427,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CompletedDate {
+            get {
+                return this.CompletedDateField;
+            }
+            set {
+                if ((this.CompletedDateField.Equals(value) != true)) {
+                    this.CompletedDateField = value;
+                    this.RaisePropertyChanged("CompletedDate");
+                }
             }
         }
         
@@ -12341,6 +12668,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SignitIntegrationClient.RemoteOrderService.SigningMetadataItem[] SigningMetadataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[] SigningWebContextsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.Guid> UniqueIdField;
@@ -12572,6 +12902,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((object.ReferenceEquals(this.SigningMetadataField, value) != true)) {
                     this.SigningMetadataField = value;
                     this.RaisePropertyChanged("SigningMetadata");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SignitIntegrationClient.RemoteOrderService.SigningWebContextModel[] SigningWebContexts {
+            get {
+                return this.SigningWebContextsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SigningWebContextsField, value) != true)) {
+                    this.SigningWebContextsField = value;
+                    this.RaisePropertyChanged("SigningWebContexts");
                 }
             }
         }
@@ -13026,6 +13369,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
         private SignitIntegrationClient.RemoteOrderService.SigningProcessDetailsModel[] NotSignedYetField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime OrderDeadlineField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string OrderIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -13220,6 +13566,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime OrderDeadline {
+            get {
+                return this.OrderDeadlineField;
+            }
+            set {
+                if ((this.OrderDeadlineField.Equals(value) != true)) {
+                    this.OrderDeadlineField = value;
+                    this.RaisePropertyChanged("OrderDeadline");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string OrderId {
             get {
                 return this.OrderIdField;
@@ -13389,6 +13748,592 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((this.TimestampField.Equals(value) != true)) {
                     this.TimestampField = value;
                     this.RaisePropertyChanged("Timestamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SigningWebContextModel", Namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing")]
+    [System.SerializableAttribute()]
+    public partial class SigningWebContextModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AbortUrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ErrorUrlBaseField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExitUrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LocalWebContextRefField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SignUrlBaseField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SrefField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StyleUrlField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AbortUrl {
+            get {
+                return this.AbortUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AbortUrlField, value) != true)) {
+                    this.AbortUrlField = value;
+                    this.RaisePropertyChanged("AbortUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorUrlBase {
+            get {
+                return this.ErrorUrlBaseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorUrlBaseField, value) != true)) {
+                    this.ErrorUrlBaseField = value;
+                    this.RaisePropertyChanged("ErrorUrlBase");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ExitUrl {
+            get {
+                return this.ExitUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExitUrlField, value) != true)) {
+                    this.ExitUrlField = value;
+                    this.RaisePropertyChanged("ExitUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LocalWebContextRef {
+            get {
+                return this.LocalWebContextRefField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocalWebContextRefField, value) != true)) {
+                    this.LocalWebContextRefField = value;
+                    this.RaisePropertyChanged("LocalWebContextRef");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SignUrlBase {
+            get {
+                return this.SignUrlBaseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SignUrlBaseField, value) != true)) {
+                    this.SignUrlBaseField = value;
+                    this.RaisePropertyChanged("SignUrlBase");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sref {
+            get {
+                return this.SrefField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SrefField, value) != true)) {
+                    this.SrefField = value;
+                    this.RaisePropertyChanged("Sref");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StyleUrl {
+            get {
+                return this.StyleUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StyleUrlField, value) != true)) {
+                    this.StyleUrlField = value;
+                    this.RaisePropertyChanged("StyleUrl");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SigningGroupViewModel", Namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing")]
+    [System.SerializableAttribute()]
+    public partial class SigningGroupViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SignitIntegrationClient.RemoteOrderService.PaymentPlan[] AvailablePaymentPlansField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CommitmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContactEmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContactPhoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CustomStylesEnabledField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CvrField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DomainField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FooterBackgroundColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FooterFontColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FooterTextField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int LogoFooterField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int LogoHeaderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[] MembersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SignitIntegrationClient.RemoteOrderService.MessageTemplate[] MessageTemplatesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NemIdLoginIntervalDaysField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PageTemplateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PaymentMethodSystemNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SignitIntegrationClient.RemoteOrderService.PaymentPlan PaymentPlanField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PaymentPlanIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PostCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SmsNotificationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool WebApiEnabledField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SignitIntegrationClient.RemoteOrderService.PaymentPlan[] AvailablePaymentPlans {
+            get {
+                return this.AvailablePaymentPlansField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AvailablePaymentPlansField, value) != true)) {
+                    this.AvailablePaymentPlansField = value;
+                    this.RaisePropertyChanged("AvailablePaymentPlans");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string City {
+            get {
+                return this.CityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CityField, value) != true)) {
+                    this.CityField = value;
+                    this.RaisePropertyChanged("City");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CommitmentId {
+            get {
+                return this.CommitmentIdField;
+            }
+            set {
+                if ((this.CommitmentIdField.Equals(value) != true)) {
+                    this.CommitmentIdField = value;
+                    this.RaisePropertyChanged("CommitmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContactEmail {
+            get {
+                return this.ContactEmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContactEmailField, value) != true)) {
+                    this.ContactEmailField = value;
+                    this.RaisePropertyChanged("ContactEmail");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContactPhone {
+            get {
+                return this.ContactPhoneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContactPhoneField, value) != true)) {
+                    this.ContactPhoneField = value;
+                    this.RaisePropertyChanged("ContactPhone");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CustomStylesEnabled {
+            get {
+                return this.CustomStylesEnabledField;
+            }
+            set {
+                if ((this.CustomStylesEnabledField.Equals(value) != true)) {
+                    this.CustomStylesEnabledField = value;
+                    this.RaisePropertyChanged("CustomStylesEnabled");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Cvr {
+            get {
+                return this.CvrField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CvrField, value) != true)) {
+                    this.CvrField = value;
+                    this.RaisePropertyChanged("Cvr");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Domain {
+            get {
+                return this.DomainField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DomainField, value) != true)) {
+                    this.DomainField = value;
+                    this.RaisePropertyChanged("Domain");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FooterBackgroundColor {
+            get {
+                return this.FooterBackgroundColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FooterBackgroundColorField, value) != true)) {
+                    this.FooterBackgroundColorField = value;
+                    this.RaisePropertyChanged("FooterBackgroundColor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FooterFontColor {
+            get {
+                return this.FooterFontColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FooterFontColorField, value) != true)) {
+                    this.FooterFontColorField = value;
+                    this.RaisePropertyChanged("FooterFontColor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FooterText {
+            get {
+                return this.FooterTextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FooterTextField, value) != true)) {
+                    this.FooterTextField = value;
+                    this.RaisePropertyChanged("FooterText");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int LogoFooter {
+            get {
+                return this.LogoFooterField;
+            }
+            set {
+                if ((this.LogoFooterField.Equals(value) != true)) {
+                    this.LogoFooterField = value;
+                    this.RaisePropertyChanged("LogoFooter");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int LogoHeader {
+            get {
+                return this.LogoHeaderField;
+            }
+            set {
+                if ((this.LogoHeaderField.Equals(value) != true)) {
+                    this.LogoHeaderField = value;
+                    this.RaisePropertyChanged("LogoHeader");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[] Members {
+            get {
+                return this.MembersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MembersField, value) != true)) {
+                    this.MembersField = value;
+                    this.RaisePropertyChanged("Members");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SignitIntegrationClient.RemoteOrderService.MessageTemplate[] MessageTemplates {
+            get {
+                return this.MessageTemplatesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageTemplatesField, value) != true)) {
+                    this.MessageTemplatesField = value;
+                    this.RaisePropertyChanged("MessageTemplates");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NemIdLoginIntervalDays {
+            get {
+                return this.NemIdLoginIntervalDaysField;
+            }
+            set {
+                if ((this.NemIdLoginIntervalDaysField.Equals(value) != true)) {
+                    this.NemIdLoginIntervalDaysField = value;
+                    this.RaisePropertyChanged("NemIdLoginIntervalDays");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PageTemplate {
+            get {
+                return this.PageTemplateField;
+            }
+            set {
+                if ((this.PageTemplateField.Equals(value) != true)) {
+                    this.PageTemplateField = value;
+                    this.RaisePropertyChanged("PageTemplate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PaymentMethodSystemName {
+            get {
+                return this.PaymentMethodSystemNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PaymentMethodSystemNameField, value) != true)) {
+                    this.PaymentMethodSystemNameField = value;
+                    this.RaisePropertyChanged("PaymentMethodSystemName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SignitIntegrationClient.RemoteOrderService.PaymentPlan PaymentPlan {
+            get {
+                return this.PaymentPlanField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PaymentPlanField, value) != true)) {
+                    this.PaymentPlanField = value;
+                    this.RaisePropertyChanged("PaymentPlan");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PaymentPlanId {
+            get {
+                return this.PaymentPlanIdField;
+            }
+            set {
+                if ((this.PaymentPlanIdField.Equals(value) != true)) {
+                    this.PaymentPlanIdField = value;
+                    this.RaisePropertyChanged("PaymentPlanId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PostCode {
+            get {
+                return this.PostCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PostCodeField, value) != true)) {
+                    this.PostCodeField = value;
+                    this.RaisePropertyChanged("PostCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool SmsNotification {
+            get {
+                return this.SmsNotificationField;
+            }
+            set {
+                if ((this.SmsNotificationField.Equals(value) != true)) {
+                    this.SmsNotificationField = value;
+                    this.RaisePropertyChanged("SmsNotification");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool WebApiEnabled {
+            get {
+                return this.WebApiEnabledField;
+            }
+            set {
+                if ((this.WebApiEnabledField.Equals(value) != true)) {
+                    this.WebApiEnabledField = value;
+                    this.RaisePropertyChanged("WebApiEnabled");
                 }
             }
         }
@@ -13602,6 +14547,64 @@ namespace SignitIntegrationClient.RemoteOrderService {
                     this.SigningProcessProcessField = value;
                     this.RaisePropertyChanged("SigningProcessProcess");
                 }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LogoutResponse", Namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api")]
+    [System.SerializableAttribute()]
+    public partial class LogoutResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LogoutRequest", Namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api")]
+    [System.SerializableAttribute()]
+    public partial class LogoutRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
             }
         }
         
@@ -14098,435 +15101,6 @@ namespace SignitIntegrationClient.RemoteOrderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SigningGroupViewModel", Namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing")]
-    [System.SerializableAttribute()]
-    public partial class SigningGroupViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SignitIntegrationClient.RemoteOrderService.PaymentPlan[] AvailablePaymentPlansField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CityField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CommitmentIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContactEmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContactPhoneField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool CustomStylesEnabledField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CvrField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DomainField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FooterBackgroundColorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FooterFontColorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FooterTextField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int LogoFooterField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int LogoHeaderField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[] MembersField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SignitIntegrationClient.RemoteOrderService.MessageTemplate[] MessageTemplatesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NemIdLoginIntervalDaysField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PageTemplateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PaymentMethodSystemNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SignitIntegrationClient.RemoteOrderService.PaymentPlan PaymentPlanField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PaymentPlanIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PostCodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool SmsNotificationField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public SignitIntegrationClient.RemoteOrderService.PaymentPlan[] AvailablePaymentPlans {
-            get {
-                return this.AvailablePaymentPlansField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AvailablePaymentPlansField, value) != true)) {
-                    this.AvailablePaymentPlansField = value;
-                    this.RaisePropertyChanged("AvailablePaymentPlans");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string City {
-            get {
-                return this.CityField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CityField, value) != true)) {
-                    this.CityField = value;
-                    this.RaisePropertyChanged("City");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CommitmentId {
-            get {
-                return this.CommitmentIdField;
-            }
-            set {
-                if ((this.CommitmentIdField.Equals(value) != true)) {
-                    this.CommitmentIdField = value;
-                    this.RaisePropertyChanged("CommitmentId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ContactEmail {
-            get {
-                return this.ContactEmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContactEmailField, value) != true)) {
-                    this.ContactEmailField = value;
-                    this.RaisePropertyChanged("ContactEmail");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ContactPhone {
-            get {
-                return this.ContactPhoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContactPhoneField, value) != true)) {
-                    this.ContactPhoneField = value;
-                    this.RaisePropertyChanged("ContactPhone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool CustomStylesEnabled {
-            get {
-                return this.CustomStylesEnabledField;
-            }
-            set {
-                if ((this.CustomStylesEnabledField.Equals(value) != true)) {
-                    this.CustomStylesEnabledField = value;
-                    this.RaisePropertyChanged("CustomStylesEnabled");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Cvr {
-            get {
-                return this.CvrField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CvrField, value) != true)) {
-                    this.CvrField = value;
-                    this.RaisePropertyChanged("Cvr");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Domain {
-            get {
-                return this.DomainField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DomainField, value) != true)) {
-                    this.DomainField = value;
-                    this.RaisePropertyChanged("Domain");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FooterBackgroundColor {
-            get {
-                return this.FooterBackgroundColorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FooterBackgroundColorField, value) != true)) {
-                    this.FooterBackgroundColorField = value;
-                    this.RaisePropertyChanged("FooterBackgroundColor");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FooterFontColor {
-            get {
-                return this.FooterFontColorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FooterFontColorField, value) != true)) {
-                    this.FooterFontColorField = value;
-                    this.RaisePropertyChanged("FooterFontColor");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FooterText {
-            get {
-                return this.FooterTextField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FooterTextField, value) != true)) {
-                    this.FooterTextField = value;
-                    this.RaisePropertyChanged("FooterText");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int LogoFooter {
-            get {
-                return this.LogoFooterField;
-            }
-            set {
-                if ((this.LogoFooterField.Equals(value) != true)) {
-                    this.LogoFooterField = value;
-                    this.RaisePropertyChanged("LogoFooter");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int LogoHeader {
-            get {
-                return this.LogoHeaderField;
-            }
-            set {
-                if ((this.LogoHeaderField.Equals(value) != true)) {
-                    this.LogoHeaderField = value;
-                    this.RaisePropertyChanged("LogoHeader");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public SignitIntegrationClient.RemoteOrderService.MemberToGroupViewModel[] Members {
-            get {
-                return this.MembersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MembersField, value) != true)) {
-                    this.MembersField = value;
-                    this.RaisePropertyChanged("Members");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public SignitIntegrationClient.RemoteOrderService.MessageTemplate[] MessageTemplates {
-            get {
-                return this.MessageTemplatesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessageTemplatesField, value) != true)) {
-                    this.MessageTemplatesField = value;
-                    this.RaisePropertyChanged("MessageTemplates");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NemIdLoginIntervalDays {
-            get {
-                return this.NemIdLoginIntervalDaysField;
-            }
-            set {
-                if ((this.NemIdLoginIntervalDaysField.Equals(value) != true)) {
-                    this.NemIdLoginIntervalDaysField = value;
-                    this.RaisePropertyChanged("NemIdLoginIntervalDays");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PageTemplate {
-            get {
-                return this.PageTemplateField;
-            }
-            set {
-                if ((this.PageTemplateField.Equals(value) != true)) {
-                    this.PageTemplateField = value;
-                    this.RaisePropertyChanged("PageTemplate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PaymentMethodSystemName {
-            get {
-                return this.PaymentMethodSystemNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PaymentMethodSystemNameField, value) != true)) {
-                    this.PaymentMethodSystemNameField = value;
-                    this.RaisePropertyChanged("PaymentMethodSystemName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public SignitIntegrationClient.RemoteOrderService.PaymentPlan PaymentPlan {
-            get {
-                return this.PaymentPlanField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PaymentPlanField, value) != true)) {
-                    this.PaymentPlanField = value;
-                    this.RaisePropertyChanged("PaymentPlan");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PaymentPlanId {
-            get {
-                return this.PaymentPlanIdField;
-            }
-            set {
-                if ((this.PaymentPlanIdField.Equals(value) != true)) {
-                    this.PaymentPlanIdField = value;
-                    this.RaisePropertyChanged("PaymentPlanId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PostCode {
-            get {
-                return this.PostCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PostCodeField, value) != true)) {
-                    this.PostCodeField = value;
-                    this.RaisePropertyChanged("PostCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool SmsNotification {
-            get {
-                return this.SmsNotificationField;
-            }
-            set {
-                if ((this.SmsNotificationField.Equals(value) != true)) {
-                    this.SmsNotificationField = value;
-                    this.RaisePropertyChanged("SmsNotification");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MemberToGroupViewModel", Namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers")]
     [System.SerializableAttribute()]
     public partial class MemberToGroupViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -14738,6 +15312,18 @@ namespace SignitIntegrationClient.RemoteOrderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/PreInitOrderResponse", ReplyAction="http://tempuri.org/IRemoteOrderService/PreInitOrderResponseResponse")]
         System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.PreInitOrderResponse> PreInitOrderResponseAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/LogoutResponseModel", ReplyAction="http://tempuri.org/IRemoteOrderService/LogoutResponseModelResponse")]
+        SignitIntegrationClient.RemoteOrderService.LogoutResponse LogoutResponseModel();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/LogoutResponseModel", ReplyAction="http://tempuri.org/IRemoteOrderService/LogoutResponseModelResponse")]
+        System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.LogoutResponse> LogoutResponseModelAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/LogoutRequestModel", ReplyAction="http://tempuri.org/IRemoteOrderService/LogoutRequestModelResponse")]
+        SignitIntegrationClient.RemoteOrderService.LogoutRequest LogoutRequestModel();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/LogoutRequestModel", ReplyAction="http://tempuri.org/IRemoteOrderService/LogoutRequestModelResponse")]
+        System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.LogoutRequest> LogoutRequestModelAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponse", ReplyAction="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponseResponse")]
         SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse GetMyCompanyAccountsResponse();
         
@@ -14900,6 +15486,22 @@ namespace SignitIntegrationClient.RemoteOrderService {
         
         public System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.PreInitOrderResponse> PreInitOrderResponseAsync() {
             return base.Channel.PreInitOrderResponseAsync();
+        }
+        
+        public SignitIntegrationClient.RemoteOrderService.LogoutResponse LogoutResponseModel() {
+            return base.Channel.LogoutResponseModel();
+        }
+        
+        public System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.LogoutResponse> LogoutResponseModelAsync() {
+            return base.Channel.LogoutResponseModelAsync();
+        }
+        
+        public SignitIntegrationClient.RemoteOrderService.LogoutRequest LogoutRequestModel() {
+            return base.Channel.LogoutRequestModel();
+        }
+        
+        public System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.LogoutRequest> LogoutRequestModelAsync() {
+            return base.Channel.LogoutRequestModelAsync();
         }
         
         public SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse GetMyCompanyAccountsResponse() {

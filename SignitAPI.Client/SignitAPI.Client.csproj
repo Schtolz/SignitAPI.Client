@@ -78,6 +78,12 @@
     <None Include="Service References\RemoteOrderService\SignitIntegrationClient.RemoteOrderService.GetSigningOrderDetailsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\RemoteOrderService\SignitIntegrationClient.RemoteOrderService.LogoutRequest.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RemoteOrderService\SignitIntegrationClient.RemoteOrderService.LogoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\RemoteOrderService\SignitIntegrationClient.RemoteOrderService.PreInitOrderResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

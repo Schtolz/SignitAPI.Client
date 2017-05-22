@@ -23,6 +23,7 @@ namespace SignitIntegrationSample.Controllers
         private readonly string _merchantLogin = ConfigurationManager.AppSettings["SignitMerchantName"];
         private readonly string _merchantPassword = ConfigurationManager.AppSettings["SignitMerchantPassword"];
         private readonly string _apiBaseUri = ConfigurationManager.AppSettings["SignitApiBaseUri"];
+        private readonly string _apiExitUri = ConfigurationManager.AppSettings["SignitApiExitUri"];
         private readonly string _signitClientId = ConfigurationManager.AppSettings["SignitClientId"];
         private readonly string _signitClientSecret = ConfigurationManager.AppSettings["SignitClientSecret"];
 
@@ -122,7 +123,13 @@ namespace SignitIntegrationSample.Controllers
                                 }
                             }
                         }
-                    }
+                    },
+                    SigningWebContexts = 
+                        signers.Select(x=>new SigningWebContextModel
+                        {
+                            ExitUrl = _apiExitUri+orderId.ToString(),
+                            LocalWebContextRef = x.LocalSignerReference
+                        }).ToArray()   
                 };
 
                 try
@@ -210,11 +217,11 @@ namespace SignitIntegrationSample.Controllers
                     new Uri(signingProcess.SigningProcessProcess.SigningProcessResults.First().SignUrl).Query)["sref"];
 
             model.Sref = sref;
-            await serviceClient.PreInitOrderBeforeSigning(new PreInitOrder
+            /*await serviceClient.PreInitOrderBeforeSigning(new PreInitOrder
             {
                 Sref = sref,
-                ExitUrl = "http://localhost:61147/SampleOrder/IndexApi#/details/" + orderId
-            });
+                ExitUrl = _apiExitUri + orderId
+            });*/
 
             return Ok(model);
         }
@@ -262,8 +269,12 @@ namespace SignitIntegrationSample.Controllers
                 Title = fileName,
                 LocalDocumentReference = fileName
             };
-
-            if (fileName.ToLower().EndsWith("xml"))
+            if (fileName.ToLower().EndsWith("txt"))
+            {
+                document.DocumentType = DocumentType.Html;
+                document.Base64Content = Convert.ToBase64String(fileBytes);
+            }
+            else if (fileName.ToLower().EndsWith("xml"))
             {
                 document.DocumentType = DocumentType.Xml;
                 document.Base64Content = Convert.ToBase64String(fileBytes);

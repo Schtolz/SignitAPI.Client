@@ -61,6 +61,7 @@ namespace WcfServicesTest
             var documentToIncludeTask = GetDocumentToInclude(fileName, fileData, _signitWebApiClient);
             var documentToInclude = documentToIncludeTask.Result;
             var uniqueId = Guid.NewGuid();
+            var localSignerReference = "sko@nosunset.com";
             //Building the order entity
             var orderBatch = new SigningOrderModel
             {
@@ -78,7 +79,7 @@ namespace WcfServicesTest
                     new SignerDataViewModel
                     {
                         Email = "sko@nosunset.com",
-                        LocalSignerReference = "sko@nosunset.com",
+                        LocalSignerReference = localSignerReference,
                         Name = "sko@nosunset.com"
                     }
                 },
@@ -99,18 +100,28 @@ namespace WcfServicesTest
                                 {
                                     new SigningProcess
                                     {
-                                        LocalSignerReference = "sko@nosunset.com",
+                                        LocalSignerReference = localSignerReference,
                                         LocalDocumentReference = documentToInclude.LocalDocumentReference
                                     }
                                 }
                             }
                         }
                     }
+                },
+                SigningWebContexts = new []
+                {
+                    new SigningWebContextModel
+                    {
+                        ExitUrl = "http://localhost:7077/cart/exit",
+                        LocalWebContextRef = localSignerReference,
+                    } 
                 }
+                
             };
             var responseTask = _signitWebApiClient.InsertOrder(orderBatch);
             var response = responseTask.Result;
             Assert.IsTrue(response.SigningOrder.UniqueId == uniqueId);
+            Assert.IsTrue(response.SigningOrder.SigningWebContexts.First().LocalWebContextRef.Equals(localSignerReference));
         }
 
         [TestMethod]

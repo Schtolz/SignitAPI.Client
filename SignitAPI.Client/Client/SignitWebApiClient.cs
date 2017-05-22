@@ -38,13 +38,17 @@ namespace SignitIntegrationClient.Client
             return response;
         }
 
-        public async Task<GetMyOrdersResponse> SearchOrders(string searchTerm=null, string localSignerReference=null, BearerToken token = null)
+        public async Task<GetMyOrdersResponse> SearchOrders(string searchTerm = null, string localSignerReference = null,
+            int ordersPerPage = 10, string orderByProperty = "CreationTime", string orderStatus = "Active",
+            BearerToken token = null)
         {
             var requestToken = token ?? await GetApiToken();
             var response =
                 await
                     GetRequest<GetMyOrdersResponse>(requestToken.Token, ApiBaseUri,
-                        "/api/v1/order/mine?searchTerm=" + searchTerm+"&localSignerReference="+localSignerReference);
+                        "/api/v1/order/mine?searchTerm=" + searchTerm + "&localSignerReference=" + localSignerReference +
+                        "&OrderByProperty=" + orderByProperty + "&OrdersPerPage=" + ordersPerPage + "&OrderStatus=" +
+                        orderStatus);
             return response;
         }
 
@@ -123,7 +127,14 @@ namespace SignitIntegrationClient.Client
                     PostRequest<SendSigningEmailResponse>(requestToken.Token, ApiBaseUri, "/api/v1/order/sendsigningemail", request);
             return response;
         }
-
+        public async Task<LogoutResponse> Logout(LogoutRequest request, BearerToken token = null)
+        {
+            var requestToken = token ?? await GetApiToken();
+            var response =
+                await
+                    PostRequest<LogoutResponse>(requestToken.Token, ApiBaseUri, "api/v1/autorization/logout", request);
+            return response;
+        }
         public async Task<BearerToken> GetApiToken()
         {
             if (DateTime.Now >= Token.Expires)

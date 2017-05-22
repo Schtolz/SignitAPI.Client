@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="4V31FVTta3RFkRpfUiaDUvIk+WY=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="KAq+S0MAjkMmvpbM2J1KUHUjnPA=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IRemoteOrderService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IRemoteOrderService" contract="RemoteOrderService.IRemoteOrderService" bindingType="basicHttpBinding" address="http://pp.signplatform.com/wcf/RemoteOrderService.svc" bindingConfiguration="BasicHttpBinding_IRemoteOrderService">
+    <endpoint name="BasicHttpBinding_IRemoteOrderService" contract="RemoteOrderService.IRemoteOrderService" bindingType="basicHttpBinding" address="http://localhost:7091/wcf/RemoteOrderService.svc" bindingConfiguration="BasicHttpBinding_IRemoteOrderService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://pp.signplatform.com/wcf/RemoteOrderService.svc</serializedValue>
+          <serializedValue>http://localhost:7091/wcf/RemoteOrderService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

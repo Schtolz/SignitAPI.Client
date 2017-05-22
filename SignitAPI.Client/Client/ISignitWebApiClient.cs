@@ -65,9 +65,14 @@ namespace SignitIntegrationClient.Client
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <param name="localSignerReference">Signer reference. Will look into all orders containing this one as a signer</param>
+        /// <param name="orderStatus">Defines order status to be searched. Can be used multiple statuses f.ex. "Active,CancelledByMerchant"</param>
         /// <param name="token">You can provide custom token here. F.ex. requested via oAuth process</param>
+        /// <param name="ordersPerPage">Number of orders returned. Max number</param>
+        /// <param name="orderByProperty">Order by order property. Default direction - descending</param>
         /// <returns></returns>
-        Task<GetMyOrdersResponse> SearchOrders(string searchTerm=null, string localSignerReference=null, BearerToken token = null);
+        Task<GetMyOrdersResponse> SearchOrders(string searchTerm = null, string localSignerReference = null,
+            int ordersPerPage = 10, string orderByProperty = "CreationTime", string orderStatus = "Active",
+            BearerToken token = null);
         /// <summary>
         /// Returns current logged in user company accounts. It allows to create orders on behalf of company that user is in by setting "OwnerId" in order request
         /// </summary>
@@ -82,5 +87,12 @@ namespace SignitIntegrationClient.Client
         /// <returns></returns>
         Task<SendSigningEmailResponse> SendSigningEmail(SendSigningEmailRequest request,
             BearerToken token = null);
+        /// <summary>
+        /// Logs user out on signit. All tokens obtained become invalid.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="token">You can provide custom token here. F.ex. requested via oAuth process</param>
+        /// <returns></returns>
+        Task<LogoutResponse> Logout(LogoutRequest request, BearerToken token = null);
     }
 }
