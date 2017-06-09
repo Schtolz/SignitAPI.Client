@@ -269,6 +269,18 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="GetMyInfoResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetMyInfoResponseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="GetMyInfoResponseResult" nillable="true" type="q27:GetMyInfoResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="GetDocumentResponse">
         <xs:complexType>
           <xs:sequence />
@@ -277,7 +289,7 @@
       <xs:element name="GetDocumentResponseResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="GetDocumentResponseResult" nillable="true" type="q27:GetDocumentResponse" />
+            <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="GetDocumentResponseResult" nillable="true" type="q28:GetDocumentResponse" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -289,7 +301,7 @@
       <xs:element name="SendSigningEmailResponseResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="SendSigningEmailResponseResult" nillable="true" type="q28:SendSigningEmailResponse" />
+            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="SendSigningEmailResponseResult" nillable="true" type="q29:SendSigningEmailResponse" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -301,7 +313,7 @@
       <xs:element name="SendSigningEmailRequestResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="SendSigningEmailRequestResult" nillable="true" type="q29:SendSigningEmailRequest" />
+            <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" minOccurs="0" name="SendSigningEmailRequestResult" nillable="true" type="q30:SendSigningEmailRequest" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1708,6 +1720,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="ErrorUrlBase" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ExitUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Sref" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:complexType>
@@ -2400,6 +2413,15 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="GetMyCompanyAccountsResponse" nillable="true" type="tns:GetMyCompanyAccountsResponse" />
+      <xs:complexType name="GetMyInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetMyInfoResponse" nillable="true" type="tns:GetMyInfoResponse" />
       <xs:complexType name="SendSigningEmailResponse">
         <xs:sequence>
           <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
@@ -2633,6 +2655,12 @@
   <wsdl:message name="IRemoteOrderService_GetMyCompanyAccountsResponse_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMyCompanyAccountsResponseResponse" />
   </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetMyInfoResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteOrderService_GetMyInfoResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyInfoResponseResponse" />
+  </wsdl:message>
   <wsdl:message name="IRemoteOrderService_GetDocumentResponse_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDocumentResponse" />
   </wsdl:message>
@@ -2719,6 +2747,10 @@
     <wsdl:operation name="GetMyCompanyAccountsResponse">
       <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponse" message="tns:IRemoteOrderService_GetMyCompanyAccountsResponse_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponseResponse" message="tns:IRemoteOrderService_GetMyCompanyAccountsResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyInfoResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetMyInfoResponse" message="tns:IRemoteOrderService_GetMyInfoResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRemoteOrderService/GetMyInfoResponseResponse" message="tns:IRemoteOrderService_GetMyInfoResponse_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetDocumentResponse">
       <wsdl:input wsaw:Action="http://tempuri.org/IRemoteOrderService/GetDocumentResponse" message="tns:IRemoteOrderService_GetDocumentResponse_InputMessage" />
@@ -2881,6 +2913,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetMyCompanyAccountsResponse">
       <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyInfoResponse">
+      <soap:operation soapAction="http://tempuri.org/IRemoteOrderService/GetMyInfoResponse" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

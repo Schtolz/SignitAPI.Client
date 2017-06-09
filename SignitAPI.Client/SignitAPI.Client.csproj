@@ -72,6 +72,9 @@
     <None Include="Service References\RemoteOrderService\SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\RemoteOrderService\SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\RemoteOrderService\SignitIntegrationClient.RemoteOrderService.GetMyOrdersResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

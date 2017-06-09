@@ -2526,6 +2526,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
@@ -3084,6 +3085,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
@@ -4272,6 +4274,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
@@ -5385,6 +5388,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
@@ -6627,6 +6631,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
@@ -8539,6 +8544,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
@@ -9357,6 +9363,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
         private string ExitUrlField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OrderIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SrefField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -9391,6 +9400,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((object.ReferenceEquals(this.ExitUrlField, value) != true)) {
                     this.ExitUrlField = value;
                     this.RaisePropertyChanged("ExitUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OrderId {
+            get {
+                return this.OrderIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OrderIdField, value) != true)) {
+                    this.OrderIdField = value;
+                    this.RaisePropertyChanged("OrderId");
                 }
             }
         }
@@ -10110,6 +10132,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
@@ -10556,6 +10579,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.LogoutRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SendSigningEmailRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(SignitIntegrationClient.RemoteOrderService.SigningProcessModel))]
@@ -14665,6 +14689,99 @@ namespace SignitIntegrationClient.RemoteOrderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GetMyInfoResponse", Namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api")]
+    [System.SerializableAttribute()]
+    public partial class GetMyInfoResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Phone {
+            get {
+                return this.PhoneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
+                    this.PhoneField = value;
+                    this.RaisePropertyChanged("Phone");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SendSigningEmailResponse", Namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api")]
     [System.SerializableAttribute()]
     public partial class SendSigningEmailResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -15330,6 +15447,12 @@ namespace SignitIntegrationClient.RemoteOrderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponse", ReplyAction="http://tempuri.org/IRemoteOrderService/GetMyCompanyAccountsResponseResponse")]
         System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse> GetMyCompanyAccountsResponseAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/GetMyInfoResponse", ReplyAction="http://tempuri.org/IRemoteOrderService/GetMyInfoResponseResponse")]
+        SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse GetMyInfoResponse();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/GetMyInfoResponse", ReplyAction="http://tempuri.org/IRemoteOrderService/GetMyInfoResponseResponse")]
+        System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse> GetMyInfoResponseAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRemoteOrderService/GetDocumentResponse", ReplyAction="http://tempuri.org/IRemoteOrderService/GetDocumentResponseResponse")]
         SignitIntegrationClient.RemoteOrderService.GetDocumentResponse GetDocumentResponse();
         
@@ -15510,6 +15633,14 @@ namespace SignitIntegrationClient.RemoteOrderService {
         
         public System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.GetMyCompanyAccountsResponse> GetMyCompanyAccountsResponseAsync() {
             return base.Channel.GetMyCompanyAccountsResponseAsync();
+        }
+        
+        public SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse GetMyInfoResponse() {
+            return base.Channel.GetMyInfoResponse();
+        }
+        
+        public System.Threading.Tasks.Task<SignitIntegrationClient.RemoteOrderService.GetMyInfoResponse> GetMyInfoResponseAsync() {
+            return base.Channel.GetMyInfoResponseAsync();
         }
         
         public SignitIntegrationClient.RemoteOrderService.GetDocumentResponse GetDocumentResponse() {

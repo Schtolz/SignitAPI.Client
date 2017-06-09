@@ -21,6 +21,7 @@ namespace SignitIntegrationClient.Client
         public string Password { get; set; }
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
+        public TimeSpan CallTimeout { get; set; } = TimeSpan.FromMinutes(5);
 
         public BearerToken Token
         {
@@ -119,6 +120,18 @@ namespace SignitIntegrationClient.Client
             return response;
         }
 
+        public async Task<GetMyInfoResponse> GetMyAccountInfo(BearerToken token = null)
+        {
+            var requestToken = token ?? await GetApiToken();
+            var response =
+                await
+                    GetRequest<GetMyInfoResponse>(requestToken.Token, ApiBaseUri,
+                        "/api/v1/autorization/getmyinfo");
+            return response;
+        }
+
+        
+
         public async Task<SendSigningEmailResponse> SendSigningEmail(SendSigningEmailRequest request, BearerToken token = null)
         {
             var requestToken = token ?? await GetApiToken();
@@ -188,6 +201,7 @@ namespace SignitIntegrationClient.Client
         {
             using (var client = new HttpClient())
             {
+                client.Timeout = CallTimeout;
                 //setup client
                 client.BaseAddress = new Uri(apiBaseUri);
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -210,6 +224,7 @@ namespace SignitIntegrationClient.Client
         {
             using (var client = new HttpClient())
             {
+                client.Timeout = CallTimeout;
                 //setup client
                 client.BaseAddress = new Uri(apiBaseUri);
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -237,6 +252,7 @@ namespace SignitIntegrationClient.Client
         {
             using (var client = new HttpClient())
             {
+                client.Timeout = CallTimeout;
                 //setup client
                 client.BaseAddress = new Uri(apiBaseUri);
                 client.DefaultRequestHeaders.Accept.Clear();
