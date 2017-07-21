@@ -39,6 +39,13 @@ namespace SignitIntegrationClient.Client
         /// <returns></returns>
         Task<GetSigningOrderDetailsResponse> GetOrderDetails(string orderId, BearerToken token = null);
         /// <summary>
+        /// Cancels the order on signit. Orders cannto be deleted so it sets order status to "Cancelled" instead
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        Task<CancelOrderResponse> CancelOrder(string orderId, BearerToken token = null);
+        /// <summary>
         /// Creates new signing order and triggers notifications and signing processes
         /// </summary>
         /// <param name="insertOrder"></param>

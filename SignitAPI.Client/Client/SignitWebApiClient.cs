@@ -49,7 +49,7 @@ namespace SignitIntegrationClient.Client
                     GetRequest<GetMyOrdersResponse>(requestToken.Token, ApiBaseUri,
                         "/api/v1/order/mine?searchTerm=" + searchTerm + "&localSignerReference=" + localSignerReference +
                         "&OrderByProperty=" + orderByProperty + "&OrdersPerPage=" + ordersPerPage + "&OrderStatus=" +
-                        orderStatus);
+                        orderStatus+"&IsOwner=true");
             return response;
         }
 
@@ -71,6 +71,17 @@ namespace SignitIntegrationClient.Client
             var response =
                 await
                     GetRequest<GetSigningOrderDetailsResponse>(requestToken.Token, ApiBaseUri,
+                        "/api/v1/order/" + orderId);
+            return response;
+        }
+
+        public async Task<CancelOrderResponse> CancelOrder(string orderId,
+            BearerToken token = null)
+        {
+            var requestToken = token ?? await GetApiToken();
+            var response =
+                await
+                    DeleteRequest<CancelOrderResponse>(requestToken.Token, ApiBaseUri,
                         "/api/v1/order/" + orderId);
             return response;
         }
@@ -275,7 +286,31 @@ namespace SignitIntegrationClient.Client
             }
         }
 
+        private async Task<T> DeleteRequest<T>(string token, string apiBaseUri, string requestPath)
+        {
+            using (var client = new HttpClient())
+            {
+                client.Timeout = CallTimeout;
+                //setup client
+                client.BaseAddress = new Uri(apiBaseUri);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
 
+                //make request
+                var response =
+                    await
+                        client.DeleteAsync(requestPath);
+                var responseString = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new CommunicationException(response.ReasonPhrase + " " + responseString);
+                }
+                var jObject = JsonConvert.DeserializeObject<T>(responseString);
+
+                return jObject;
+            }
+        }
     }
 
     public class BearerToken
