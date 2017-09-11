@@ -8,6 +8,7 @@ To configure client you have to add several settings in web.config:
     <add key="SignitMerchantPassword" value="" />
     <!--https://www.signplatform.com for production-->
     <add key="SignitApiBaseUri" value="https://pp.signplatform.com" />
+	<!--URI used when your signature window has finished the signature process-->
     <add key="SignitApiExitUrl" value="http://localhost:1742/cart#digital-signature/" />
     <!--Your obtained client id. You can register on https://pp.signplatform.com as a company and get client id and secret-->
     <!--Keep in mind that you need to contact signit to enable API-->
