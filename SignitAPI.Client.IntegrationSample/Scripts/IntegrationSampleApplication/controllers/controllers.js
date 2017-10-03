@@ -1,16 +1,18 @@
 ﻿integrationApp.controller('indexController', ['$scope', '$http', '$location', 'orderService', 'APP_DATA', function ($scope, $http, $location, orderService, APP_DATA) {
     $scope.formData = { file: [], convert: true, addLabel: true };
-    
+    $scope.loading = false;
     // create a message to display in our view
     $scope.message = 'Everyone come and see how good I look!';
 
     $scope.postOrder = function () {
+        $scope.loading = true;
         $scope.formData.file = $scope.file;
         $scope.formData.message = $scope.message;
         $scope.formData.signers = angular.toJson([{ LocalSignerReference: APP_DATA.LOCAL_SIGNER_REFERENCE, Name: APP_DATA.LOCAL_SIGNER_NAME, Email: APP_DATA.LOCAL_SIGNER_EMAIL, SendSignitEmails: true }]);
         orderService.postOrder($scope.formData).then(function (data) {
             $location.path("/details/" + data);
         }, function (msg) {
+            $scope.loading = false;
             $scope.error = msg;
         });
     }
@@ -64,7 +66,7 @@ integrationApp.controller('signController', ['$scope', '$http', '$routeParams', 
 
     $scope.getSigningUrl = function () {
         var css = ".eSigning{width: 500px; height:500px; border:0px;}";
-        return APP_DATA.SIGNIT_BASE_URL+'/document/sign?sref=' + $scope.sref+'&css='+css;
+        return APP_DATA.SIGNIT_BASE_URL + '/document/sign?sref=' + $scope.sref + '&css=' + css ;
     }
 
     $scope.init();

@@ -336,6 +336,7 @@
               <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
               <xs:element minOccurs="0" name="Notifications" nillable="true" type="tns:ArrayOfMerchantSigningNotification" />
               <xs:element minOccurs="0" name="OrderDescription" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="OrderProcessingTries" type="xs:int" />
               <xs:element minOccurs="0" name="OrderStatus" type="tns:OrderStatus" />
               <xs:element minOccurs="0" name="OwnerId" type="xs:int" />
               <xs:element minOccurs="0" name="PrivateDataStorageProvider" nillable="true" type="xs:string" />
@@ -2283,7 +2284,7 @@
           <xs:element minOccurs="0" name="NotSignedYet" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
           <xs:element minOccurs="0" name="OrderDeadline" type="xs:dateTime" />
           <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
-          <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="OrderStatus" type="q15:GetOrderStatusResponseOrderStatus" />
+          <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="OrderStatus" type="q15:OrderStatus" />
           <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="RealDocument" nillable="true" type="q16:Document" />
           <xs:element minOccurs="0" name="Signed" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
           <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SigningExecutionDetails" nillable="true" type="q17:ArrayOfSigningExecutionDetails" />

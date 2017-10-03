@@ -1548,6 +1548,9 @@ namespace SignitIntegrationClient.RemoteOrderService {
         private string OrderDescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OrderProcessingTriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SignitIntegrationClient.RemoteOrderService.OrderStatus OrderStatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1700,6 +1703,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((object.ReferenceEquals(this.OrderDescriptionField, value) != true)) {
                     this.OrderDescriptionField = value;
                     this.RaisePropertyChanged("OrderDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OrderProcessingTries {
+            get {
+                return this.OrderProcessingTriesField;
+            }
+            set {
+                if ((this.OrderProcessingTriesField.Equals(value) != true)) {
+                    this.OrderProcessingTriesField = value;
+                    this.RaisePropertyChanged("OrderProcessingTries");
                 }
             }
         }
@@ -13399,7 +13415,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
         private string OrderIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SignitIntegrationClient.RemoteOrderService.GetOrderStatusResponseOrderStatus OrderStatusField;
+        private SignitIntegrationClient.RemoteOrderService.OrderStatus OrderStatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SignitIntegrationClient.RemoteOrderService.Document RealDocumentField;
@@ -13616,7 +13632,7 @@ namespace SignitIntegrationClient.RemoteOrderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SignitIntegrationClient.RemoteOrderService.GetOrderStatusResponseOrderStatus OrderStatus {
+        public SignitIntegrationClient.RemoteOrderService.OrderStatus OrderStatus {
             get {
                 return this.OrderStatusField;
             }

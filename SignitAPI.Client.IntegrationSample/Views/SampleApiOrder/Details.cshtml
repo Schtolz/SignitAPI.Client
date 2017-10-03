@@ -15,7 +15,7 @@
         @TempData["Error"]
     </h2>
 }
-@if (Model.OrderStatus == GetOrderStatusResponseOrderStatus.Active)
+@if (Model.OrderStatus == OrderStatus.Active)
 {
     @Html.Action("Sign", "SampleOrder", new
     {
@@ -25,10 +25,17 @@
         successRedirectPage = Model.SuccessRedirectPage
     })
 }
-else if(Model.OrderStatus == GetOrderStatusResponseOrderStatus.Complete)
+else if (Model.OrderStatus == OrderStatus.Processing)
 {
-    
-    <h2>order id: Order has been signed. You can download signed document here: 
+
+    <h2>
+        order id: @Model.OrderId Order has been signed. However itis being processed now. Please wait and refresh page.
+    </h2>
+}
+else if (Model.OrderStatus == OrderStatus.Complete)
+{
+
+    <h2>order id:@Model.OrderId Order has been signed. You can download signed document here: 
         <a href ="@Url.RouteUrl(new { orderId = Model.OrderId, localDocumentReference = Model.LocalDocumentReference, Action="DownloadPAdES", Controller="SampleOrder" })">Download</a>    
     </h2>
 }

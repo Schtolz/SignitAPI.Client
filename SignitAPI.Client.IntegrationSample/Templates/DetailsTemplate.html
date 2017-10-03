@@ -9,8 +9,13 @@
 
 <div ng-show="order.OrderStatus==4">
     <h2>
-        order id: Order has been signed. You can download signed document here:
+        Order has been signed. You can download signed document here:
         <a href="/api/v1/order/pades?orderId={{order.OrderId}}&localDocumentReference={{order.Documents[0].LocalDocumentReference}}">Download</a>
     </h2>
+</div>
 
+<div ng-show="order.OrderStatus==7">
+    <h2>
+        Order has been signed. However is being processed now. Please wait and refresh page
+    </h2>
 </div>
