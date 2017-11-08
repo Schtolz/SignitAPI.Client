@@ -393,8 +393,6 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:SigningNotification">
             <xs:sequence>
-              <xs:element minOccurs="0" name="SigningOrder" nillable="true" type="tns:SigningOrder" />
-              <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
               <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Trigger" type="q3:merchantNotificationTriggersTypeDefTrigger" />
             </xs:sequence>
           </xs:extension>
@@ -420,10 +418,7 @@
       <xs:complexType name="NotificationType">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q5:BaseEntity">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="SigningNotification" nillable="true" type="tns:SigningNotification" />
-              <xs:element minOccurs="0" name="SigningNotificationId" type="xs:int" />
-            </xs:sequence>
+            <xs:sequence />
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
@@ -448,6 +443,17 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="SmsNotificationType" nillable="true" type="tns:SmsNotificationType" />
+      <xs:complexType name="EmailAddressNotificationType">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:NotificationType">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="Delay" type="xs:int" />
+              <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="EmailAddressNotificationType" nillable="true" type="tns:EmailAddressNotificationType" />
       <xs:simpleType name="OrderStatus">
         <xs:restriction base="xs:string">
           <xs:enumeration value="Active" />
@@ -518,8 +524,6 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:SigningNotification">
             <xs:sequence>
-              <xs:element minOccurs="0" name="SignerData" nillable="true" type="tns:SignerData" />
-              <xs:element minOccurs="0" name="SignerDataId" type="xs:int" />
               <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Trigger" type="q10:signerNotificationTriggersTypeDefTrigger" />
             </xs:sequence>
           </xs:extension>
@@ -1719,6 +1723,7 @@
       <xs:element name="GetPAdESResponse" nillable="true" type="tns:GetPAdESResponse" />
       <xs:complexType name="PreInitOrder">
         <xs:sequence>
+          <xs:element minOccurs="0" name="CancelUrl" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ErrorUrlBase" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ExitUrl" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
@@ -2203,24 +2208,19 @@
       <xs:element name="NewShortOrderDetails" nillable="true" type="tns:NewShortOrderDetails" />
       <xs:complexType name="SigningOrderModel">
         <xs:sequence>
-          <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="CreatorId" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="DatePayed" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DatePaid" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Deadline" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="DocumentTitle" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Documents" nillable="true" type="tns:ArrayOfDocumentViewModel" />
-          <xs:element minOccurs="0" name="Id" type="xs:int" />
           <xs:element minOccurs="0" name="IsPrivate" type="xs:boolean" />
           <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
           <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Notifications" nillable="true" type="q3:ArrayOfMerchantSigningNotification" />
           <xs:element minOccurs="0" name="OrderDescription" nillable="true" type="xs:string" />
-          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="OrderStatus" type="q4:OrderStatus" />
           <xs:element minOccurs="0" name="OwnerId" type="xs:int" />
           <xs:element minOccurs="0" name="SendSignedDataAsAttachmentInEmail" type="xs:boolean" />
           <xs:element minOccurs="0" name="Signers" nillable="true" type="tns:ArrayOfSignerDataViewModel" />
-          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SigningExecutionDetails" nillable="true" type="q5:ArrayOfSigningExecutionDetails" />
-          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SigningMetadata" nillable="true" type="q6:ArrayOfSigningMetadataItem" />
-          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" minOccurs="0" name="SigningWebContexts" nillable="true" type="q7:ArrayOfSigningWebContextModel" />
+          <xs:element minOccurs="0" name="SigningExecutionDetails" nillable="true" type="tns:ArrayOfSigningExecutionDetailsViewModel" />
+          <xs:element minOccurs="0" name="SigningMetadata" nillable="true" type="tns:ArrayOfSigningMetadataItemViewModel" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" minOccurs="0" name="SigningWebContexts" nillable="true" type="q4:ArrayOfSigningWebContextViewModel" />
           <xs:element minOccurs="0" name="UniqueId" nillable="true" type="ser:guid" />
         </xs:sequence>
       </xs:complexType>
@@ -2235,7 +2235,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="Base64Content" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="DocumentType" type="q8:DocumentType" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="DocumentType" type="q5:DocumentType" />
           <xs:element minOccurs="0" name="DownloadId" type="xs:int" />
           <xs:element minOccurs="0" name="IsSigned" type="xs:boolean" />
           <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
@@ -2252,28 +2252,81 @@
       <xs:element name="ArrayOfSignerDataViewModel" nillable="true" type="tns:ArrayOfSignerDataViewModel" />
       <xs:complexType name="SignerDataViewModel">
         <xs:sequence>
-          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="AcceptedPkis" nillable="true" type="q9:SignerAcceptedPki" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="AcceptedPkis" nillable="true" type="q6:SignerAcceptedPki" />
           <xs:element minOccurs="0" name="DateSigned" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="MemberId" type="xs:int" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Notifications" nillable="true" type="q10:ArrayOfCustomerSigningNotification" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Notifications" nillable="true" type="q7:ArrayOfCustomerSigningNotification" />
           <xs:element minOccurs="0" name="SendSignedDataAsAttachmentInEmail" type="xs:boolean" />
           <xs:element minOccurs="0" name="SendSignitEmails" type="xs:boolean" />
-          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="SignerStatus" type="q11:signerFilterTypeDefSignerStatus" />
-          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SignerType" type="q12:SignerType" />
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SignerType" type="q8:SignerType" />
           <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
         </xs:sequence>
       </xs:complexType>
       <xs:element name="SignerDataViewModel" nillable="true" type="tns:SignerDataViewModel" />
+      <xs:complexType name="ArrayOfSigningExecutionDetailsViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningExecutionDetailsViewModel" nillable="true" type="tns:SigningExecutionDetailsViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningExecutionDetailsViewModel" nillable="true" type="tns:ArrayOfSigningExecutionDetailsViewModel" />
+      <xs:complexType name="SigningExecutionDetailsViewModel">
+        <xs:sequence>
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="DisplayProcessInfo" type="q9:InsertOrderExecutionDetailsDisplayProcessInfo" />
+          <xs:element minOccurs="0" name="OrderDeadline" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SigningOrderId" type="xs:int" />
+          <xs:element minOccurs="0" name="SigningSteps" nillable="true" type="tns:ArrayOfSigningStepViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningExecutionDetailsViewModel" nillable="true" type="tns:SigningExecutionDetailsViewModel" />
+      <xs:complexType name="ArrayOfSigningStepViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningStepViewModel" nillable="true" type="tns:SigningStepViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningStepViewModel" nillable="true" type="tns:ArrayOfSigningStepViewModel" />
+      <xs:complexType name="SigningStepViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SigningProcesses" nillable="true" type="tns:ArrayOfSigningProcessViewModel" />
+          <xs:element minOccurs="0" name="StepDeadline" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="StepNumber" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningStepViewModel" nillable="true" type="tns:SigningStepViewModel" />
+      <xs:complexType name="ArrayOfSigningProcessViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningProcessViewModel" nillable="true" type="tns:SigningProcessViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningProcessViewModel" nillable="true" type="tns:ArrayOfSigningProcessViewModel" />
+      <xs:complexType name="SigningProcessViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningProcessViewModel" nillable="true" type="tns:SigningProcessViewModel" />
+      <xs:complexType name="ArrayOfSigningMetadataItemViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningMetadataItemViewModel" nillable="true" type="tns:SigningMetadataItemViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningMetadataItemViewModel" nillable="true" type="tns:ArrayOfSigningMetadataItemViewModel" />
+      <xs:complexType name="SigningMetadataItemViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningMetadataItemViewModel" nillable="true" type="tns:SigningMetadataItemViewModel" />
       <xs:complexType name="OrderDetailsModel">
         <xs:sequence>
           <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
           <xs:element minOccurs="0" name="DaysToDeadline" type="xs:int" />
           <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Details" nillable="true" type="q13:GetOrderDetailsResponseExecutionDetails" />
-          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Document" nillable="true" type="q14:GetOrderDetailsResponseDocumentsDocumentDetails" />
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Details" nillable="true" type="q10:GetOrderDetailsResponseExecutionDetails" />
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Document" nillable="true" type="q11:GetOrderDetailsResponseDocumentsDocumentDetails" />
           <xs:element minOccurs="0" name="Documents" nillable="true" type="tns:ArrayOfDocumentViewModel" />
           <xs:element minOccurs="0" name="Expired" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
           <xs:element minOccurs="0" name="IsCreator" type="xs:boolean" />
@@ -2284,10 +2337,11 @@
           <xs:element minOccurs="0" name="NotSignedYet" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
           <xs:element minOccurs="0" name="OrderDeadline" type="xs:dateTime" />
           <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
-          <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="OrderStatus" type="q15:OrderStatus" />
-          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="RealDocument" nillable="true" type="q16:Document" />
+          <xs:element minOccurs="0" name="OrderLink" nillable="true" type="xs:string" />
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="OrderStatus" type="q12:OrderStatus" />
+          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="RealDocument" nillable="true" type="q13:Document" />
           <xs:element minOccurs="0" name="Signed" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
-          <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SigningExecutionDetails" nillable="true" type="q17:ArrayOfSigningExecutionDetails" />
+          <xs:element minOccurs="0" name="SigningExecutionDetails" nillable="true" type="tns:ArrayOfSigningExecutionDetailsViewModel" />
         </xs:sequence>
       </xs:complexType>
       <xs:element name="OrderDetailsModel" nillable="true" type="tns:OrderDetailsModel" />
@@ -2302,23 +2356,26 @@
           <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="MemberId" type="xs:int" />
           <xs:element minOccurs="0" name="SignerName" nillable="true" type="xs:string" />
-          <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q18:signingProcessStatusTypeDef" />
+          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q14:signingProcessStatusTypeDef" />
           <xs:element minOccurs="0" name="Timestamp" type="xs:dateTime" />
         </xs:sequence>
       </xs:complexType>
       <xs:element name="SigningProcessDetailsModel" nillable="true" type="tns:SigningProcessDetailsModel" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/" />
       <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" />
       <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Messages" />
-      <xs:complexType name="ArrayOfSigningWebContextModel">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" />
+      <xs:complexType name="ArrayOfSigningWebContextViewModel">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningWebContextModel" nillable="true" type="tns:SigningWebContextModel" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningWebContextViewModel" nillable="true" type="tns:SigningWebContextViewModel" />
         </xs:sequence>
       </xs:complexType>
-      <xs:element name="ArrayOfSigningWebContextModel" nillable="true" type="tns:ArrayOfSigningWebContextModel" />
-      <xs:complexType name="SigningWebContextModel">
+      <xs:element name="ArrayOfSigningWebContextViewModel" nillable="true" type="tns:ArrayOfSigningWebContextViewModel" />
+      <xs:complexType name="SigningWebContextViewModel">
         <xs:sequence>
           <xs:element minOccurs="0" name="AbortUrl" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ErrorUrlBase" nillable="true" type="xs:string" />
@@ -2329,7 +2386,39 @@
           <xs:element minOccurs="0" name="StyleUrl" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:complexType>
-      <xs:element name="SigningWebContextModel" nillable="true" type="tns:SigningWebContextModel" />
+      <xs:element name="SigningWebContextViewModel" nillable="true" type="tns:SigningWebContextViewModel" />
+      <xs:complexType name="SigningProcessModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BaseUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Css" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Deadline" type="xs:dateTime" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Document" nillable="true" type="q1:Document" />
+          <xs:element minOccurs="0" name="IframeCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Signers" nillable="true" type="q2:ArrayOfSignerData" />
+          <xs:element minOccurs="0" name="SigningProcessResults" nillable="true" type="tns:ArrayOfSigningProcessResultModel" />
+          <xs:element minOccurs="0" name="Sref" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningProcessModel" nillable="true" type="tns:SigningProcessModel" />
+      <xs:complexType name="ArrayOfSigningProcessResultModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningProcessResultModel" nillable="true" type="tns:SigningProcessResultModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSigningProcessResultModel" nillable="true" type="tns:ArrayOfSigningProcessResultModel" />
+      <xs:complexType name="SigningProcessResultModel">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" minOccurs="0" name="DocumentDetails" nillable="true" type="q3:DocumentViewModel" />
+          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LocalWebContextRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SignUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SigningProcessId" type="xs:long" />
+          <xs:element minOccurs="0" name="SigningTime" type="xs:dateTime" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q4:signingProcessStatusTypeDef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigningProcessResultModel" nillable="true" type="tns:SigningProcessResultModel" />
       <xs:complexType name="ArrayOfSigningGroupViewModel">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningGroupViewModel" nillable="true" type="tns:SigningGroupViewModel" />
@@ -2338,8 +2427,9 @@
       <xs:element name="ArrayOfSigningGroupViewModel" nillable="true" type="tns:ArrayOfSigningGroupViewModel" />
       <xs:complexType name="SigningGroupViewModel">
         <xs:sequence>
+          <xs:element minOccurs="0" name="AccountantModuleEnabled" type="xs:boolean" />
           <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
-          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" minOccurs="0" name="AvailablePaymentPlans" nillable="true" type="q1:ArrayOfPaymentPlan" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" minOccurs="0" name="AvailablePaymentPlans" nillable="true" type="q5:ArrayOfPaymentPlanViewModel" />
           <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="CommitmentId" type="xs:int" />
           <xs:element minOccurs="0" name="ContactEmail" nillable="true" type="xs:string" />
@@ -2353,16 +2443,17 @@
           <xs:element minOccurs="0" name="Id" type="xs:int" />
           <xs:element minOccurs="0" name="LogoFooter" type="xs:int" />
           <xs:element minOccurs="0" name="LogoHeader" type="xs:int" />
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" minOccurs="0" name="Members" nillable="true" type="q2:ArrayOfMemberToGroupViewModel" />
-          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Messages" minOccurs="0" name="MessageTemplates" nillable="true" type="q3:ArrayOfMessageTemplate" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" minOccurs="0" name="Members" nillable="true" type="q6:ArrayOfMemberToGroupViewModel" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Messages" minOccurs="0" name="MessageTemplates" nillable="true" type="q7:ArrayOfMessageTemplate" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="NemIdLoginIntervalDays" type="xs:int" />
           <xs:element minOccurs="0" name="PageTemplate" type="xs:int" />
           <xs:element minOccurs="0" name="PaymentMethodSystemName" nillable="true" type="xs:string" />
-          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" minOccurs="0" name="PaymentPlan" nillable="true" type="q4:PaymentPlan" />
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" minOccurs="0" name="PaymentPlan" nillable="true" type="q8:PaymentPlanViewModel" />
           <xs:element minOccurs="0" name="PaymentPlanId" type="xs:int" />
           <xs:element minOccurs="0" name="PostCode" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="SmsNotification" type="xs:boolean" />
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" minOccurs="0" name="StorageProvidersActivated" nillable="true" type="q9:ArrayOfPaymentProduct" />
           <xs:element minOccurs="0" name="WebApiEnabled" type="xs:boolean" />
         </xs:sequence>
       </xs:complexType>
@@ -2380,7 +2471,6 @@
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Api" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" />
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Documents" />
       <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" />
       <xs:complexType name="GetSigningOrderDetailsResponse">
         <xs:sequence>
@@ -2396,7 +2486,7 @@
       <xs:element name="PutSigningOrderResponse" nillable="true" type="tns:PutSigningOrderResponse" />
       <xs:complexType name="RequestSigningProcessResponse">
         <xs:sequence>
-          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Documents" minOccurs="0" name="SigningProcessProcess" nillable="true" type="q3:SigningProcessModel" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Signing" minOccurs="0" name="SigningProcessProcess" nillable="true" type="q3:SigningProcessModel" />
         </xs:sequence>
       </xs:complexType>
       <xs:element name="RequestSigningProcessResponse" nillable="true" type="tns:RequestSigningProcessResponse" />
@@ -2438,74 +2528,31 @@
       </xs:complexType>
       <xs:element name="SendSigningEmailRequest" nillable="true" type="tns:SendSigningEmailRequest" />
     </xs:schema>
-    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Documents" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Models.Documents" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" />
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" />
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/" />
-      <xs:complexType name="SigningProcessModel">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="BaseUrl" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Css" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Deadline" type="xs:dateTime" />
-          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Document" nillable="true" type="q1:Document" />
-          <xs:element minOccurs="0" name="IframeCode" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Signers" nillable="true" type="q2:ArrayOfSignerData" />
-          <xs:element minOccurs="0" name="SigningProcessResults" nillable="true" type="tns:ArrayOfSigningProcessResultModel" />
-          <xs:element minOccurs="0" name="Sref" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:complexType>
-      <xs:element name="SigningProcessModel" nillable="true" type="tns:SigningProcessModel" />
-      <xs:complexType name="ArrayOfSigningProcessResultModel">
-        <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="unbounded" name="SigningProcessResultModel" nillable="true" type="tns:SigningProcessResultModel" />
-        </xs:sequence>
-      </xs:complexType>
-      <xs:element name="ArrayOfSigningProcessResultModel" nillable="true" type="tns:ArrayOfSigningProcessResultModel" />
-      <xs:complexType name="SigningProcessResultModel">
-        <xs:sequence>
-          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Extensions" minOccurs="0" name="DocumentDetails" nillable="true" type="q3:DocumentViewModel" />
-          <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="LocalWebContextRef" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="SignUrl" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="SigningProcessId" type="xs:long" />
-          <xs:element minOccurs="0" name="SigningTime" type="xs:dateTime" />
-          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q4:signingProcessStatusTypeDef" />
-        </xs:sequence>
-      </xs:complexType>
-      <xs:element name="SigningProcessResultModel" nillable="true" type="tns:SigningProcessResultModel" />
-    </xs:schema>
-    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" />
-      <xs:complexType name="ArrayOfPaymentPlan">
-        <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentPlan" nillable="true" type="tns:PaymentPlan" />
-        </xs:sequence>
-      </xs:complexType>
-      <xs:element name="ArrayOfPaymentPlan" nillable="true" type="tns:ArrayOfPaymentPlan" />
-      <xs:complexType name="PaymentPlan">
-        <xs:complexContent mixed="false">
-          <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q1:BaseEntity">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="Credits" type="xs:int" />
-              <xs:element minOccurs="0" name="GroupMembersAllowed" type="xs:int" />
-              <xs:element minOccurs="0" name="IsCustomTemplatesAllowed" type="xs:boolean" />
-              <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ModulesIncluded" nillable="true" type="q2:ArrayOfint" />
-              <xs:element minOccurs="0" name="MonthlyPaymentFee" type="xs:decimal" />
-              <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-              <xs:element minOccurs="0" name="PaymentCostPerMember" type="xs:decimal" />
-              <xs:element minOccurs="0" name="PaymentCostPerSigner" type="xs:decimal" />
-              <xs:element minOccurs="0" name="Price" type="xs:decimal" />
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="PaymentPlan" nillable="true" type="tns:PaymentPlan" />
-    </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Controllers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" />
+      <xs:complexType name="ArrayOfPaymentPlanViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentPlanViewModel" nillable="true" type="tns:PaymentPlanViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPaymentPlanViewModel" nillable="true" type="tns:ArrayOfPaymentPlanViewModel" />
+      <xs:complexType name="PaymentPlanViewModel">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Children" nillable="true" type="q1:ArrayOfint" />
+          <xs:element minOccurs="0" name="Credits" type="xs:int" />
+          <xs:element minOccurs="0" name="GroupMembersAllowed" type="xs:int" />
+          <xs:element minOccurs="0" name="IsCustomTemplatesAllowed" type="xs:boolean" />
+          <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ModulesIncluded" nillable="true" type="q2:ArrayOfint" />
+          <xs:element minOccurs="0" name="MonthlyPaymentFee" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PaymentCostPerMember" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PaymentCostPerSigner" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Rank" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PaymentPlanViewModel" nillable="true" type="tns:PaymentPlanViewModel" />
       <xs:complexType name="ArrayOfMemberToGroupViewModel">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="unbounded" name="MemberToGroupViewModel" nillable="true" type="tns:MemberToGroupViewModel" />
@@ -2516,10 +2563,10 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="GroupId" type="xs:int" />
           <xs:element minOccurs="0" name="MemberEmail" nillable="true" type="xs:string" />
-          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MemberEmailsAssociatedWithGroup" nillable="true" type="q1:ArrayOfstring" />
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MemberEmailsAssociatedWithGroup" nillable="true" type="q3:ArrayOfstring" />
           <xs:element minOccurs="0" name="MemberId" type="xs:int" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Status" type="q2:SigningGroupToMemberStatus" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="Status" type="q4:SigningGroupToMemberStatus" />
         </xs:sequence>
       </xs:complexType>
       <xs:element name="MemberToGroupViewModel" nillable="true" type="tns:MemberToGroupViewModel" />
@@ -2552,6 +2599,43 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="MessageTemplate" nillable="true" type="tns:MessageTemplate" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Payments" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" />
+      <xs:complexType name="ArrayOfPaymentProduct">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentProduct" nillable="true" type="tns:PaymentProduct" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPaymentProduct" nillable="true" type="tns:ArrayOfPaymentProduct" />
+      <xs:complexType name="PaymentProduct">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core" base="q1:BaseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="EconomicIdMothly" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="EconomicIdPerMember" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="EconomicIdVariable" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="IsPointCard" type="xs:boolean" />
+              <xs:element minOccurs="0" name="IsRecurringProduct" type="xs:boolean" />
+              <xs:element minOccurs="0" name="MandatoryPayment" type="xs:boolean" />
+              <xs:element minOccurs="0" name="ModuleSystemName" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="PointCardId" nillable="true" type="xs:int" />
+              <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+              <xs:element minOccurs="0" name="PricePerItem" type="xs:decimal" />
+              <xs:element minOccurs="0" name="PricePerMember" type="xs:decimal" />
+              <xs:element minOccurs="0" name="PricePerSignature" type="xs:decimal" />
+              <xs:element minOccurs="0" name="Rank" type="xs:int" />
+              <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="SigningOrder" nillable="true" type="q2:SigningOrder" />
+              <xs:element minOccurs="0" name="SigningOrderId" nillable="true" type="xs:int" />
+              <xs:element minOccurs="0" name="SignsMonthly" nillable="true" type="xs:int" />
+              <xs:element minOccurs="0" name="SubscriptionId" nillable="true" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PaymentProduct" nillable="true" type="tns:PaymentProduct" />
     </xs:schema>
   </wsdl:types>
   <wsdl:message name="IRemoteOrderService_InsertSigningOrder_InputMessage">

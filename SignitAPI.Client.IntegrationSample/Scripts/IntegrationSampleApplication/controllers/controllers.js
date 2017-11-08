@@ -66,7 +66,7 @@ integrationApp.controller('signController', ['$scope', '$http', '$routeParams', 
 
     $scope.getSigningUrl = function () {
         var css = ".eSigning{width: 500px; height:500px; border:0px;}";
-        return APP_DATA.SIGNIT_BASE_URL + '/document/sign?sref=' + $scope.sref + '&css=' + css ;
+        return APP_DATA.SIGNIT_BASE_URL + '/document/sign?sref=' + $scope.sref + '&css=' + css+'&preinit=true' ;
     }
 
     $scope.init();
