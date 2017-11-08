@@ -13621,10 +13621,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LocalDocumentReferenceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LocalSignerReferenceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SignitIntegrationClient.RemoteOrderService.signingProcessStatusTypeDef StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> TimeStampField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -13633,6 +13642,19 @@ namespace SignitIntegrationClient.RemoteOrderService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
             }
         }
         
@@ -13658,6 +13680,32 @@ namespace SignitIntegrationClient.RemoteOrderService {
                 if ((object.ReferenceEquals(this.LocalSignerReferenceField, value) != true)) {
                     this.LocalSignerReferenceField = value;
                     this.RaisePropertyChanged("LocalSignerReference");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SignitIntegrationClient.RemoteOrderService.signingProcessStatusTypeDef Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
                 }
             }
         }

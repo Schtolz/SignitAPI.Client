@@ -104,18 +104,18 @@ namespace SignitIntegrationSample.Controllers
                     Signers = signers.ToArray(),
                     SigningExecutionDetails = new[]
                     {
-                        new SigningExecutionDetails
+                        new SigningExecutionDetailsViewModel
                         {
                             OrderDeadline = orderDeadline,
                             SigningSteps = new[]
                             {
-                                new SigningStep
+                                new SigningStepViewModel
                                 {
                                     StepDeadline = orderDeadline,
                                     //Has to always start from "1"
                                     StepNumber = 1,
                                     //Direct relation signer-document has to present
-                                    SigningProcesses = signers.Select(signer=>new SigningProcess
+                                    SigningProcesses = signers.Select(signer=>new SigningProcessViewModel
                                     {
                                         LocalSignerReference = signer.LocalSignerReference,
                                         LocalDocumentReference = documentToInclude.LocalDocumentReference
@@ -125,7 +125,7 @@ namespace SignitIntegrationSample.Controllers
                         }
                     },
                     SigningWebContexts = 
-                        signers.Select(x=>new SigningWebContextModel
+                        signers.Select(x=>new SigningWebContextViewModel
                         {
                             ExitUrl = _apiExitUri+orderId.ToString(),
                             LocalWebContextRef = x.LocalSignerReference

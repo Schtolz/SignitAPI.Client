@@ -85,12 +85,12 @@ namespace WcfServicesTest
                 },
                 SigningExecutionDetails = new[]
                 {
-                    new SigningExecutionDetails
+                    new SigningExecutionDetailsViewModel
                     {
                         OrderDeadline = deadline,
                         SigningSteps = new[]
                         {
-                            new SigningStep
+                            new SigningStepViewModel
                             {
                                 StepDeadline = deadline,
                                 //Has to always start from "1"
@@ -98,7 +98,7 @@ namespace WcfServicesTest
                                 //Direct relation signer-document has to present
                                 SigningProcesses = new []
                                 {
-                                    new SigningProcess
+                                    new SigningProcessViewModel
                                     {
                                         LocalSignerReference = localSignerReference,
                                         LocalDocumentReference = documentToInclude.LocalDocumentReference
@@ -110,7 +110,7 @@ namespace WcfServicesTest
                 },
                 SigningWebContexts = new []
                 {
-                    new SigningWebContextModel
+                    new SigningWebContextViewModel
                     {
                         ExitUrl = "http://localhost:7077/cart/exit",
                         LocalWebContextRef = localSignerReference,

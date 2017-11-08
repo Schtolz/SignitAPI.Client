@@ -2302,8 +2302,11 @@
       <xs:element name="ArrayOfSigningProcessViewModel" nillable="true" type="tns:ArrayOfSigningProcessViewModel" />
       <xs:complexType name="SigningProcessViewModel">
         <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
           <xs:element minOccurs="0" name="LocalDocumentReference" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q10:signingProcessStatusTypeDef" />
+          <xs:element minOccurs="0" name="TimeStamp" nillable="true" type="xs:dateTime" />
         </xs:sequence>
       </xs:complexType>
       <xs:element name="SigningProcessViewModel" nillable="true" type="tns:SigningProcessViewModel" />
@@ -2325,8 +2328,8 @@
           <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
           <xs:element minOccurs="0" name="DaysToDeadline" type="xs:int" />
           <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Details" nillable="true" type="q10:GetOrderDetailsResponseExecutionDetails" />
-          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Document" nillable="true" type="q11:GetOrderDetailsResponseDocumentsDocumentDetails" />
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Details" nillable="true" type="q11:GetOrderDetailsResponseExecutionDetails" />
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Document" nillable="true" type="q12:GetOrderDetailsResponseDocumentsDocumentDetails" />
           <xs:element minOccurs="0" name="Documents" nillable="true" type="tns:ArrayOfDocumentViewModel" />
           <xs:element minOccurs="0" name="Expired" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
           <xs:element minOccurs="0" name="IsCreator" type="xs:boolean" />
@@ -2338,8 +2341,8 @@
           <xs:element minOccurs="0" name="OrderDeadline" type="xs:dateTime" />
           <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="OrderLink" nillable="true" type="xs:string" />
-          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="OrderStatus" type="q12:OrderStatus" />
-          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="RealDocument" nillable="true" type="q13:Document" />
+          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="OrderStatus" type="q13:OrderStatus" />
+          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Nosunset.Signit.Core.Domain.Signing" minOccurs="0" name="RealDocument" nillable="true" type="q14:Document" />
           <xs:element minOccurs="0" name="Signed" nillable="true" type="tns:ArrayOfSigningProcessDetailsModel" />
           <xs:element minOccurs="0" name="SigningExecutionDetails" nillable="true" type="tns:ArrayOfSigningExecutionDetailsViewModel" />
         </xs:sequence>
@@ -2356,7 +2359,7 @@
           <xs:element minOccurs="0" name="LocalSignerReference" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="MemberId" type="xs:int" />
           <xs:element minOccurs="0" name="SignerName" nillable="true" type="xs:string" />
-          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q14:signingProcessStatusTypeDef" />
+          <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q15:signingProcessStatusTypeDef" />
           <xs:element minOccurs="0" name="Timestamp" type="xs:dateTime" />
         </xs:sequence>
       </xs:complexType>
